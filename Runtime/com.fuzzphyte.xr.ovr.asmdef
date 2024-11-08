@@ -13,7 +13,9 @@
         "com.fuzzphyte.xr",
         "Unity.TextMeshPro",
         "Oculus.Interaction",
-        "Oculus.Haptics"
+        "Oculus.Haptics",
+        "Oculus.VR",
+        "com.fuzzphyte.sgraph"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
