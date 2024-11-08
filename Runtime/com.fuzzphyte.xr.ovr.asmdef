@@ -1,0 +1,27 @@
+{
+    "name": "com.fuzzphyte.xr.ovr",
+    "rootNamespace": "FuzzPhyte.XR.OVR",
+    "references": [
+        "Unity.Mathematics",
+        "Unity.Netcode.Runtime",
+        "Unity.Networking.Transport",
+        "com.fuzzphyte.utility",
+        "com.fuzzphyte.systemevent",
+        "com.fuzzphyte.ray",
+        "com.fuzzphyte.utility.edu",
+        "com.fuzzphyte.network",
+        "com.fuzzphyte.xr",
+        "Unity.TextMeshPro",
+        "Oculus.Interaction",
+        "Oculus.Haptics"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
