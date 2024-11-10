@@ -28,24 +28,33 @@ namespace FuzzPhyte.XR.OVR
             Debug.LogWarning($"Got some Pointer Event! {pointerEvent.Type.ToString()}");
             //pointerEvent.Pose
             Debug.LogWarning($"Data object name? {pointerEvent.Data.ToString()}");
-            var cData = (GameObject)pointerEvent.Data;
-            if (cData != null)
+            try
             {
-                if (cData.GetComponent<Controller>() != null)
+                var cData = (GameObject)pointerEvent.Data;
+                if (cData != null)
                 {
-                    Debug.LogWarning($"Found a Controller Component!");
+                    if (cData.GetComponent<Controller>() != null)
+                    {
+                        Debug.LogWarning($"Found a Controller Component!");
+                    }
+                    else
+                    {
+                        Debug.LogError($"Still not working");
+                        //StartHaptics(Handedness.Right);
+                        return;
+                    }
                 }
-                else
-                {
-                    Debug.LogError($"Still not working");
-                    //StartHaptics(Handedness.Right);
-                    return;
-                }
-            }
-            Controller controllerData = cData.GetComponent<Controller>();
-            Debug.LogWarning($"Right or Left??: I'm the {controllerData.Handedness.ToString()} controller");
+                Controller controllerData = cData.GetComponent<Controller>();
+                Debug.LogWarning($"Right or Left??: I'm the {controllerData.Handedness.ToString()} controller");
 
-            StartHaptics(controllerData.Handedness);
+                StartHaptics(controllerData.Handedness);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Error: probably missing the optional data requirement for the Right/Left Controller Reference in the Interactor{e.Message}");
+                return;
+            }
+           
         }
         protected virtual void StartHaptics(Handedness handedness)
         {
