@@ -1307,6 +1307,7 @@ GameObject:
   - component: {fileID: 176833835}
   - component: {fileID: 176833837}
   - component: {fileID: 176833836}
+  - component: {fileID: 176833838}
   m_Layer: 0
   m_Name: InteractorExample
   m_TagString: Untagged
@@ -1536,6 +1537,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &176833838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176833832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e688c95feff6d0468163be408217f2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainFPTag: {fileID: 11400000, guid: d0125a13b2a58414992c6e370fba273d, type: 2}
 --- !u!1 &179173911
 GameObject:
   m_ObjectHideFlags: 0
@@ -11294,6 +11308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPosition: {fileID: 1162790125}
+  Testing: 0
   spawnStack:
   - {fileID: 1676964456320324863, guid: fab0da5a597ef6046a3a29ad58af8bca, type: 3}
   - {fileID: 6610354418598776344, guid: f3b15ff6a847009468404e46ab97f72d, type: 3}
@@ -11308,7 +11323,9 @@ MonoBehaviour:
   UnderStackVisualization: {fileID: 1057649106}
   verticalScaleMeasure: 0
   currentOnStackItem: {fileID: 0}
+  SpawnParentRoot: {fileID: 0}
   TestItem: {fileID: 0}
+  grabbedItemListenerList: []
 --- !u!4 &1818176930
 Transform:
   m_ObjectHideFlags: 0
@@ -11340,7 +11357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e688c95feff6d0468163be408217f2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainFPTag: {fileID: 11400000, guid: 87dcbd1712984493ba95a7d6c8328a4c, type: 2}
+  MainFPTag: {fileID: 11400000, guid: 0e3707fa3f3f09745aae5a59a0965712, type: 2}
 --- !u!1 &1823304196
 GameObject:
   m_ObjectHideFlags: 0

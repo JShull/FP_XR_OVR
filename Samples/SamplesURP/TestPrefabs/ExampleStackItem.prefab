@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5009844853093675884}
-  - component: {fileID: 9140790254726003754}
   m_Layer: 4
   m_Name: InteractionGuts
   m_TagString: Untagged
@@ -36,33 +35,6 @@ Transform:
   - {fileID: 7644913423238242094}
   m_Father: {fileID: 4597329936103410095}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &9140790254726003754
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1411185298340341838}
-  serializedVersion: 4
-  m_Mass: 0.2
-  m_Drag: 0.1
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!1 &1486187841765712650
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,6 +207,8 @@ GameObject:
   - component: {fileID: 1105763811530465687}
   - component: {fileID: 63402978221969965}
   - component: {fileID: 5445690097170866081}
+  - component: {fileID: 2180059772245526698}
+  - component: {fileID: 9066161630845663170}
   m_Layer: 0
   m_Name: ExampleStackItem
   m_TagString: Untagged
@@ -273,8 +247,8 @@ MonoBehaviour:
   _transferOnSecondSelection: 0
   _addNewPointsToFront: 0
   _forwardElement: {fileID: 0}
-  _oneGrabTransformer: {fileID: 0}
-  _twoGrabTransformer: {fileID: 0}
+  _oneGrabTransformer: {fileID: 5445690097170866081}
+  _twoGrabTransformer: {fileID: 5445690097170866081}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
   _rigidbody: {fileID: 1105763811530465687}
@@ -398,6 +372,88 @@ MonoBehaviour:
       AxisRange:
         Min: 1
         Max: 3
+--- !u!114 &2180059772245526698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676964456320324863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 514aa3c2ebf787d479a2c9e8af60650d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemCollider: {fileID: 4281245155897667088}
+  ItemTransform: {fileID: 4597329936103410095}
+  ItemRigidBody: {fileID: 1105763811530465687}
+  ResetWorldEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _startPosition: {x: 0, y: 0, z: 0}
+  _startRotation: {x: 0, y: 0, z: 0, w: 0}
+  TheFPTag: {fileID: 11400000, guid: 87dcbd1712984493ba95a7d6c8328a4c, type: 2}
+  TheFPData: {fileID: 0}
+  currentSocket: {fileID: 0}
+  handState: 2
+--- !u!114 &9066161630845663170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676964456320324863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f8f6e9e6f3e114b9bf9a57c2160615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointable: {fileID: 8106220530220973581}
+  _whenRelease:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnhover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2180059772245526698}
+        m_TargetAssemblyTypeName: FuzzPhyte.XR.FPWorldItem, com.fuzzphyte.xr
+        m_MethodName: PickedUpItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2180059772245526698}
+        m_TargetAssemblyTypeName: FuzzPhyte.XR.FPWorldItem, com.fuzzphyte.xr
+        m_MethodName: DroppedItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenMove:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenCancel:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2100249076196219992
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,7 +1264,7 @@ MonoBehaviour:
   _maxInteractors: -1
   _maxSelectingInteractors: -1
   _data: {fileID: 0}
-  _pointableElement: {fileID: 0}
+  _pointableElement: {fileID: 6676388106067473672}
   _rigidbody: {fileID: 1105763811530465687}
   _grabSource: {fileID: 0}
   _useClosestPointAsGrabSource: 1
@@ -1455,7 +1511,7 @@ MonoBehaviour:
   _maxInteractors: -1
   _maxSelectingInteractors: -1
   _data: {fileID: 0}
-  _pointableElement: {fileID: 0}
+  _pointableElement: {fileID: 6676388106067473672}
   _rigidbody: {fileID: 1105763811530465687}
   _physicsGrabbable: {fileID: 0}
   _resetGrabOnGrabsUpdated: 1
@@ -1945,7 +2001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f8f6e9e6f3e114b9bf9a57c2160615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointable: {fileID: 0}
+  _pointable: {fileID: 6676388106067473672}
   _whenRelease:
     m_PersistentCalls:
       m_Calls: []
