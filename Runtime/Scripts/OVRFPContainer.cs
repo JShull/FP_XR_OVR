@@ -11,7 +11,7 @@ namespace FuzzPhyte.XR.OVR
     {
         [Tooltip("Status of our Container")]
         public SequenceStatus ContainerStatus;
-        public RotaterStatus ContainerRotaterStatus = RotaterStatus.Closed;
+        public CaseStatus ContainerRotaterStatus = CaseStatus.Closed;
         public OneGrabRotateTransformer ContainerRotateManager;
         //public List<RequirementD> UnlockRequirements = new List<RequirementD>();
         public List<ContainerRequirementD> LatchRequirements = new List<ContainerRequirementD>();
@@ -156,7 +156,7 @@ namespace FuzzPhyte.XR.OVR
             if (angleCheck > minValue+minValueOffset)
             {
                 //open
-                ContainerRotaterStatus = RotaterStatus.Open;
+                ContainerRotaterStatus = CaseStatus.Open;
                 //make sure our latches stay disabled
                 for (int i = 0; i < Latches.Count; i++)
                 {
@@ -174,7 +174,7 @@ namespace FuzzPhyte.XR.OVR
             else
             {
                 //closed
-                ContainerRotaterStatus = RotaterStatus.Closed;
+                ContainerRotaterStatus = CaseStatus.Closed;
                 //make sure our latches are enabled
                 for (int i = 0; i < Latches.Count; i++)
                 {
