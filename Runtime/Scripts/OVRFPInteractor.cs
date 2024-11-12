@@ -23,6 +23,7 @@ namespace FuzzPhyte.XR.OVR
         [Header("Associated Events")]
         public UnityEvent OnInteractionOpenedEvent;
         public UnityEvent OnInteractionClosedEvent;
+        public bool OneTimeSelectMode = false;
         protected virtual void Start()
         {
            
@@ -106,8 +107,13 @@ namespace FuzzPhyte.XR.OVR
                             OnSelectAudioTriggerClosed.PlayAudio();
                         }
                     }
+                    if (OneTimeSelectMode)
+                    {
+                        InteractorStatus = SequenceStatus.Locked;
+                    }
                 }
             }
         }
+        
     }
 }
