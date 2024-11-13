@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4e8e9c08db841439dd83d86df46785, type: 3}
+  m_Name: BagXRSamples_FontAssetH7ParaEx
+  m_EditorClassIdentifier: 
+  UniqueID: WFJTYW1wbGVzfFhSU2FtcGxlRm9udHwwLjAwODU0Nzc4MywwLDEsMQH7
+  Label: 7
+  Font: {fileID: 11400000, guid: bce695fe47a4d8945a170526d54ecb25, type: 2}
+  MinSize: 9
+  MaxSize: 11
+  UseAutoSizing: 1
+  FontStyle: 0
+  FontAlignment: 1025
+  FontColor: {r: 0, g: 0, b: 0, a: 1}

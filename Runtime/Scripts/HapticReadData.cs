@@ -25,9 +25,9 @@ namespace FuzzPhyte.XR.OVR
         /// <param name="pointerEvent"></param>
         public virtual void HandlePointerEventSelect(PointerEvent pointerEvent)
         {
-            Debug.LogWarning($"Got some Pointer Event! {pointerEvent.Type.ToString()}");
+            //Debug.LogWarning($"Got some Pointer Event! {pointerEvent.Type.ToString()}");
             //pointerEvent.Pose
-            Debug.LogWarning($"Data object name? {pointerEvent.Data.ToString()}");
+            //Debug.LogWarning($"Data object name? {pointerEvent.Data.ToString()}");
             try
             {
                 var cData = (GameObject)pointerEvent.Data;
@@ -35,17 +35,17 @@ namespace FuzzPhyte.XR.OVR
                 {
                     if (cData.GetComponent<Controller>() != null)
                     {
-                        Debug.LogWarning($"Found a Controller Component!");
+                        //Debug.LogWarning($"Found a Controller Component!");
                     }
                     else
                     {
-                        Debug.LogError($"Still not working");
+                        //Debug.LogError($"Still not working");
                         //StartHaptics(Handedness.Right);
                         return;
                     }
                 }
                 Controller controllerData = cData.GetComponent<Controller>();
-                Debug.LogWarning($"Right or Left??: I'm the {controllerData.Handedness.ToString()} controller");
+                //Debug.LogWarning($"Right or Left??: I'm the {controllerData.Handedness.ToString()} controller");
 
                 StartHaptics(controllerData.Handedness);
             }

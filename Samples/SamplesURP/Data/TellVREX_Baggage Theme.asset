@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814c8a5b041eb814c936bfb98799fab4, type: 3}
+  m_Name: TellVREX_Baggage Theme
+  m_EditorClassIdentifier: 
+  UniqueID: VGVsbFZSRVh8QmFnZ2FnZSBUaGVtZXwwLjQwMzM0NjQsMC41ODYxNzI3LDAuODMwMTg4Nywx
+  ThemeLabel: Bags and Things
+  MainColor: {r: 0, g: 1, b: 0.9898968, a: 1}
+  SecondaryColor: {r: 0.5411765, g: 0.078431375, b: 0.48627454, a: 1}
+  TertiaryColor: {r: 0.48627454, g: 0.5411765, b: 0.078431375, a: 1}
+  FontSettings:
+  - {fileID: 11400000, guid: 35d4560a7e94e31449c1192941095dc8, type: 2}
+  - {fileID: 11400000, guid: 4569faae0310f2c419ecb08a3fd793d3, type: 2}
+  - {fileID: 11400000, guid: ac27e90c8de81274d8f4c19a8a1ec06c, type: 2}
+  - {fileID: 11400000, guid: 18ebb489c35f31f45b50391975876cb6, type: 2}
+  - {fileID: 11400000, guid: de7e31db3cd888940b6cb15700c035a2, type: 2}
+  - {fileID: 11400000, guid: 0726d08b1d2b3a54793397299ecdfe72, type: 2}
+  - {fileID: 11400000, guid: bcdd95d3dc5a14248b9f1b0fe8f6a426, type: 2}
+  - {fileID: 11400000, guid: caa934e3aef90b442a261e7c9f7b5d0e, type: 2}
+  FontPrimaryColor: {r: 0, g: 0, b: 0, a: 0}
+  FontSecondaryColor: {r: 0, g: 0, b: 0, a: 0}
+  Icon: {fileID: 0}
+  TexIcon: {fileID: 0}
+  BackgroundImage: {fileID: 0}
+  Description: Theme for Label Tag Example

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce33cf22d5436eb43ab841dd6d615194, type: 3}
+  m_Name: BackPack_ENG
+  m_EditorClassIdentifier: 
+  UniqueID: BackpackDEFINE
+  Word: backpack
+  IPAPronunciation: "\u02C8b\xE6k\u02CCp\xE6k"
+  Language: 1
+  Definition: A backpack is a bag with shoulder straps that allow it to be carried
+    on a person's back, typically used for carrying books, supplies, or equipment.
+  WordAudio:
+    AudioClip: {fileID: 8300000, guid: b91d4d3cae7900f43a91fcde1c0fcaa6, type: 3}
+    URLAudioType: 13
+    URLReference: 
+  DefinitionAudio:
+    AudioClip: {fileID: 8300000, guid: ee30c60ef5c4f6c458e6b49441ff6033, type: 3}
+    URLAudioType: 13
+    URLReference: 
+  Translations:
+  - {fileID: 11400000, guid: 079a6f0b4b4cf6e498aa510702969b5a, type: 2}
+  - {fileID: 11400000, guid: 97a2f8819a354dc4380c295e85c021d4, type: 2}

@@ -393,7 +393,7 @@ MonoBehaviour:
   _startPosition: {x: 0, y: 0, z: 0}
   _startRotation: {x: 0, y: 0, z: 0, w: 0}
   TheFPTag: {fileID: 11400000, guid: 87dcbd1712984493ba95a7d6c8328a4c, type: 2}
-  TheFPData: {fileID: 0}
+  TheFPData: {fileID: 11400000, guid: 3a1cd56f3bc33ef4d9804fb569710914, type: 2}
   currentSocket: {fileID: 0}
   handState: 2
 --- !u!114 &9066161630845663170

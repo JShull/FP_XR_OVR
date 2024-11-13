@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce33cf22d5436eb43ab841dd6d615194, type: 3}
+  m_Name: BackPack_SPANISH
+  m_EditorClassIdentifier: 
+  UniqueID: BackpackSPANISH
+  Word: mochila.
+  IPAPronunciation: "mo\u02C8t\u0361\u0283ila"
+  Language: 2
+  Definition: "Una mochila es un bolso que se lleva en la espalda mediante correas,
+    y se utiliza para transportar libros, \xFAtiles escolares, ropa u otros objetos."
+  WordAudio:
+    AudioClip: {fileID: 8300000, guid: 6fc153f79f48ad2429e2c81e1098c98a, type: 3}
+    URLAudioType: 13
+    URLReference: 
+  DefinitionAudio:
+    AudioClip: {fileID: 8300000, guid: 31e2ec5da722c2d41835108c6b5a3437, type: 3}
+    URLAudioType: 13
+    URLReference: 
+  Translations:
+  - {fileID: 11400000, guid: 5b993b689e314724a9958fdbf424e100, type: 2}
+  - {fileID: 11400000, guid: 079a6f0b4b4cf6e498aa510702969b5a, type: 2}

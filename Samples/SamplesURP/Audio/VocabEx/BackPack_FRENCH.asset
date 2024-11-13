@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce33cf22d5436eb43ab841dd6d615194, type: 3}
+  m_Name: BackPack_FRENCH
+  m_EditorClassIdentifier: 
+  UniqueID: BackpackFRENCH
+  Word: "sac \xE0 dos"
+  IPAPronunciation: sak a do
+  Language: 3
+  Definition: "Un sac \xE0 dos est un sac muni de bretelles qui permet de le porter
+    sur le dos, g\xE9n\xE9ralement utilis\xE9 pour transporter des livres, des fournitures
+    ou du mat\xE9riel."
+  WordAudio:
+    AudioClip: {fileID: 8300000, guid: d2e1e87132d6d834c86857f85637947a, type: 3}
+    URLAudioType: 13
+    URLReference: 
+  DefinitionAudio:
+    AudioClip: {fileID: 8300000, guid: bbaaff0d74620e24bb3671ebadfd8ddb, type: 3}
+    URLAudioType: 13
+    URLReference: 
+  Translations:
+  - {fileID: 11400000, guid: 5b993b689e314724a9958fdbf424e100, type: 2}
+  - {fileID: 11400000, guid: 97a2f8819a354dc4380c295e85c021d4, type: 2}
