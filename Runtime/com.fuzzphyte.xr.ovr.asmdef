@@ -15,7 +15,8 @@
         "Oculus.Interaction",
         "Oculus.Haptics",
         "Oculus.VR",
-        "com.fuzzphyte.sgraph"
+        "com.fuzzphyte.sgraph",
+        "Oculus.Interaction.Samples"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

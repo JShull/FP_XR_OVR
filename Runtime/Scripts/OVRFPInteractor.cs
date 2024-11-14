@@ -7,7 +7,8 @@ namespace FuzzPhyte.XR.OVR
     using FuzzPhyte.XR;
     using UnityEngine.Events;
     using System.Collections;
-
+    using TMPro;
+    using Oculus.Interaction.Samples;
     /// <summary>
     /// Designed to work with the IPointerEvents coming in via like the EventWrapper from the Oculus SDK
     /// </summary>
@@ -19,7 +20,6 @@ namespace FuzzPhyte.XR.OVR
         [SerializeField] protected XRInteractorType IOVRType;
         [SerializeField] protected XRHandedness hand;
         public HapticReadData HapticData;
-        //public IInteractor PointerInteractable;
         public OVRFPAudioTrigger OnSelectAudioTriggerOpen;
         public OVRFPAudioTrigger OnSelectAudioTriggerClosed;
         public OVRFPAudioTrigger OnHoverAudioTrigger;
@@ -37,6 +37,8 @@ namespace FuzzPhyte.XR.OVR
         [SerializeField]protected bool processDetailedLabel = false;
         [SerializeField]protected float delayBeforeDetailedLabel = 10f;
         public UnityEvent DetailedLabelPriorEvent;
+        protected InteractableObjectLabel interactableLabelRef;
+        protected TMP_Text interactableTextLabelRef;
         public bool OneTimeSelectMode = false;
         public bool UseGenericTagAfterOpen = true;
         public FP_Language OVRTagLanguage;
@@ -83,6 +85,38 @@ namespace FuzzPhyte.XR.OVR
                     OnInteractionOpenedEvent.Invoke();
                 }
             }
+            if(FPDataItem != null && FPDataItem.InteractionLabelRoot!=null)
+            {
+                interactableLabelRef = FPDataItem.InteractionLabelRoot.GetComponent<InteractableObjectLabel>();
+                if (interactableLabelRef != null)
+                {
+                    for(int i=0;i< FPDataItem.DetailedLabelData.ThemeData.FontSettings.Count; i++)
+                    {
+                        var aFontSetting = FPDataItem.DetailedLabelData.ThemeData.FontSettings[i];
+                        if(aFontSetting.Label == FontSettingLabel.Footer)
+                        {
+                            interactableTextLabelRef = interactableLabelRef.GetComponentInChildren<TMP_Text>();
+                            if (interactableTextLabelRef != null)
+                            {
+                                FontSettingSetup(aFontSetting, interactableTextLabelRef);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// Font setting pass back
+        /// </summary>
+        /// <param name="theFontSetting"></param>
+        /// <param name="font"></param>
+        protected void FontSettingSetup(FontSetting theFontSetting,TMP_Text font)
+        {
+            font.font = theFontSetting.Font;
+            font.fontSize = theFontSetting.MinSize;
+            font.color = theFontSetting.FontColor;
+            font.fontStyle = theFontSetting.FontStyle;
+            font.alignment = theFontSetting.FontAlignment;
         }
         #region Ray Wrapper
         public virtual void HandlePointerEventHoverRay(PointerEvent pointerEvent)
