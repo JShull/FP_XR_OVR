@@ -2,7 +2,7 @@
 
 ## XR OVR
 
-FP_XR_OVR is an Oculus package that works with high level FP_XR
+FP_XR_OVR is an Oculus package that works with high level [FP_XR](https://github.com/jshull/FP_XR) and still is in private development.
 
 ## Setup & Design
 
