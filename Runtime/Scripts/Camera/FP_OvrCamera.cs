@@ -30,6 +30,13 @@ namespace FuzzPhyte.XR.OVR
         private List<FP_PictureData> pictures = new List<FP_PictureData>();
         public Handedness camHand;
         public bool Inhand;
+        public bool printingPhoto;
+        [SerializeField]protected GameObject lastImage;
+        [Space]
+        [Header("Haptics")]
+        public HapticReadData hapticData;
+        public float Amp = 0.5f;
+        public float Freq = 3f;
         #region IHandGrabUseDelegate Implementation
         public void BeginUse()
         {
@@ -38,9 +45,17 @@ namespace FuzzPhyte.XR.OVR
             _lastUseTime = Time.realtimeSinceStartup;
             _lastCamTime = Time.realtimeSinceStartup;
         }
-
+        public void ResetCamForPhoto()
+        {
+            if (lastImage != null)
+            {
+                lastImage.transform.SetParent(null);
+            }
+            printingPhoto = false;
+        }
         public float ComputeUseStrength(float strength)
         {
+            BeginUse();
             //throw new System.NotImplementedException();
             currentStrength = strength;
             float delta = Time.realtimeSinceStartup - _lastUseTime;
@@ -48,7 +63,7 @@ namespace FuzzPhyte.XR.OVR
             if (strength > _dampedUseStrength)
             {
                 _dampedUseStrength = Mathf.Lerp(_dampedUseStrength, strength, _triggerSpeed * delta);
-                Debug.LogWarning($"Camera _dampedUseStrength: {_dampedUseStrength}");
+                //Debug.LogWarning($"Camera _dampedUseStrength: {_dampedUseStrength}");
             }
             else
             {
@@ -57,7 +72,21 @@ namespace FuzzPhyte.XR.OVR
             float progress = _strengthCurve.Evaluate(_dampedUseStrength);
             Debug.LogWarning($"Camera ComputeUseStrength: {progress}");
             TakePictureCaptureAndApply();
+            if (hapticData)
+            {
+                hapticData.AdjustHapticAmplitude(Amp);
+                hapticData.AdjustHapticFrequency(Freq);
+                hapticData.ExternalRequest(camHand);
+                
+            }
             return 0;
+        }
+        public void FireHaptics()
+        {
+            if (hapticData)
+            {
+                hapticData.ExternalRequest(camHand); 
+            }
         }
 
         public void EndUse()
@@ -102,7 +131,7 @@ namespace FuzzPhyte.XR.OVR
         }
         public void Update()
         {
-            if (Inhand)
+            if (Inhand&& !printingPhoto)
             {
                 //check for trigger press on left or right?
                 if(camHand == Handedness.Left)
@@ -110,6 +139,7 @@ namespace FuzzPhyte.XR.OVR
                     if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
                     {
                         ComputeUseStrength(1);
+                        printingPhoto = true;
                     }
                 }
                 else
@@ -117,8 +147,10 @@ namespace FuzzPhyte.XR.OVR
                     if (OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
                     {
                         ComputeUseStrength(1);
+                        printingPhoto = true;
                     }
                 }
+                
             }
         }
         public void TakePictureCaptureAndApply()
@@ -175,7 +207,7 @@ namespace FuzzPhyte.XR.OVR
         }
         TextMeshPro ApplyTextureToMaterial(Texture2D texture)
         {
-            var picture = GameObject.Instantiate(ImagePrefab, ImageLocationSpawn.position, ImageLocationSpawn.rotation);
+            lastImage = GameObject.Instantiate(ImagePrefab, ImageLocationSpawn.position, ImageLocationSpawn.rotation,ImageLocationSpawn);
             
             // Create a new instance of the material
             Material materialInstance = new Material(TargetInstanceMaterial);
@@ -185,15 +217,15 @@ namespace FuzzPhyte.XR.OVR
 
             // Optionally, apply the material instance to an object in your scene
             // For example, assuming you have a GameObject with a MeshRenderer
-            if(picture.GetComponent<FP_OvrPicture>() != null)
+            if(lastImage.GetComponent<FP_OvrPicture>() != null)
             {
-                MeshRenderer renderer = picture.GetComponent<FP_OvrPicture>().ImageRenderer;
+                MeshRenderer renderer = lastImage.GetComponent<FP_OvrPicture>().ImageRenderer;
                 //MeshRenderer renderer = GetComponent<MeshRenderer>();
                 if (renderer != null)
                 {
                     renderer.material = materialInstance;
                 }
-                return picture.GetComponent<FP_OvrPicture>().TextTagRef;
+                return lastImage.GetComponent<FP_OvrPicture>().TextTagRef;
             }
             return null;
         }

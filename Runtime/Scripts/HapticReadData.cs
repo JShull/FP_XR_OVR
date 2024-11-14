@@ -19,6 +19,14 @@ namespace FuzzPhyte.XR.OVR
         {
             StartHaptics(hand);
         }
+        public virtual void AdjustHapticAmplitude(float newAmplitude)
+        {
+            Amplitude = newAmplitude;
+        }
+        public virtual void AdjustHapticFrequency(float newFrequency)
+        {
+            Frequency = newFrequency;
+        }
         /// <summary>
         /// OVR Pointer Event we can hook onto like the various Unity Wrappers that OVR has
         /// </summary>
@@ -55,6 +63,18 @@ namespace FuzzPhyte.XR.OVR
                 return;
             }
            
+        }
+        public virtual void StartHapicsRightHand()
+        {
+            StartHaptics(Handedness.Right);
+        }
+        public virtual void StartHapticsLeftHand()
+        {
+            StartHaptics(Handedness.Left);
+        }
+        public virtual void ContinueHaptic()
+        {
+
         }
         protected virtual void StartHaptics(Handedness handedness)
         {

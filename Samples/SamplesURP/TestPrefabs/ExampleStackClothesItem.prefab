@@ -390,10 +390,21 @@ MonoBehaviour:
   ResetWorldEvent:
     m_PersistentCalls:
       m_Calls: []
+  InteractionLabelRoot: {fileID: 0}
+  InteractionDisplayText: {fileID: 0}
+  ActivatedInteractionLabelEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _startPosition: {x: 0, y: 0, z: 0}
   _startRotation: {x: 0, y: 0, z: 0, w: 0}
-  TheFPTag: {fileID: 11400000, guid: 87dcbd1712984493ba95a7d6c8328a4c, type: 2}
   TheFPData: {fileID: 11400000, guid: 3a1cd56f3bc33ef4d9804fb569710914, type: 2}
+  DetailedLabelData:
+    TagData: {fileID: 0}
+    VocabData: {fileID: 0}
+    ThemeData: {fileID: 0}
+  StartingFPLanguage: 0
+  StartDetailedLabelOnStart: 0
+  interfaceObjects: []
   currentSocket: {fileID: 0}
   handState: 2
 --- !u!114 &9066161630845663170
@@ -698,7 +709,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fa6b7797c123c2241b53c83b5d90163c, type: 2}
+  - {fileID: 2100000, guid: 2f29c9cdb205ea744b729188a97d126d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
