@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UniqueID: WFJTYW1wbGVzfFhSU2FtcGxlRm9udHwwLjAwODU0Nzc4MywwLDEsMQ==
   Label: 1
-  Font: {fileID: 11400000, guid: 1996b8ba133df2f4fab848cb2c526cdc, type: 2}
-  MinSize: 16
-  MaxSize: 24
+  Font: {fileID: 11400000, guid: b1295d0c6d237334c972a81ea6073e6f, type: 2}
+  MinSize: 26
+  MaxSize: 40
   UseAutoSizing: 1
   FontStyle: 1
-  FontAlignment: 258
-  FontColor: {r: 0, g: 0, b: 0, a: 1}
+  FontAlignment: 514
+  FontColor: {r: 0.6745098, g: 0.21052866, b: 0.675728, a: 1}

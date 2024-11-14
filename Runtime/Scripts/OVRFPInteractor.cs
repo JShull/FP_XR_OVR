@@ -6,6 +6,7 @@ namespace FuzzPhyte.XR.OVR
     using UnityEngine;
     using FuzzPhyte.XR;
     using UnityEngine.Events;
+    using System.Collections;
 
     /// <summary>
     /// Designed to work with the IPointerEvents coming in via like the EventWrapper from the Oculus SDK
@@ -24,13 +25,25 @@ namespace FuzzPhyte.XR.OVR
         public OVRFPAudioTrigger OnHoverAudioTrigger;
         public OVRFPAudioTrigger OnUnhoverAudioTrigger;
         public FPWorldItem FPDataItem;
+         
         [Space]
         [Header("Associated Events")]
         public UnityEvent OnInteractionOpenedEvent;
         public UnityEvent OnInteractionClosedEvent;
         public UnityEvent OnInteractionHoverEvent;
         public UnityEvent OnInteractionUnhoverEvent;
+        [Space]
+        [Tooltip("Process event before we tell our FPDataItem to do it's thing")]
+        [SerializeField]protected bool processDetailedLabel = false;
+        [SerializeField]protected float delayBeforeDetailedLabel = 10f;
+        public UnityEvent DetailedLabelPriorEvent;
         public bool OneTimeSelectMode = false;
+        public bool UseGenericTagAfterOpen = true;
+        public FP_Language OVRTagLanguage;
+        protected Coroutine tagDelayRoutine;
+        protected bool OpenedBefore = false;
+        protected bool processGenericTag = false;
+
         protected virtual void Start()
         {
             if (gameObject.GetComponent<RayInteractable>())
@@ -159,6 +172,87 @@ namespace FuzzPhyte.XR.OVR
                 return;
             }
         }
+        
+        public virtual void DisplayDetailedVocab()
+        {
+            if (!processDetailedLabel)
+            {
+                DetailedLabelPriorEvent.Invoke();
+                FPDataItem.ActivateDetailedLabelTimer(delayBeforeDetailedLabel);
+                
+                processDetailedLabel = true;
+            }
+        }
+        public virtual void StopDisplayDetailedVocab()
+        {
+            if (processDetailedLabel)
+            {
+                FPDataItem.DeactivateAllLabels();
+            }
+        }
+        protected IEnumerator DelayShowGenericOVRTag(float delayTime)
+        {
+            yield return new WaitForSecondsRealtime(delayTime);
+            DisplayGenericTag();
+        }
+        public virtual void DisplayGenericTag()
+        {
+            if (OpenedBefore)
+            {
+                //var curLanguage = FPDataItem.StartingFPLanguage;
+                var curDataBlock = FPDataItem.DetailedLabelData.VocabData;
+                int dataBlockIndex = 0;
+                switch (OVRTagLanguage)
+                {
+                    case FP_Language.French:
+                        if(curDataBlock.Translations.Count > 0)
+                        {
+                            for(int i = 0; i < curDataBlock.Translations.Count; i++)
+                            {
+                                if (curDataBlock.Translations[i].Language == FP_Language.French)
+                                {
+                                    dataBlockIndex = i;
+                                    //FPDataItem.SetupInteractionLabelText(curDataBlock.Translations[i].Word);
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    case FP_Language.Spanish:
+                        if(curDataBlock.Translations.Count > 0)
+                        {
+                            for (int i = 0; i < curDataBlock.Translations.Count; i++)
+                            {
+                                if (curDataBlock.Translations[i].Language == FP_Language.Spanish)
+                                {
+                                    dataBlockIndex = i;
+                                    //FPDataItem.SetupInteractionLabelText(curDataBlock.Translations[i].Word);
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    case FP_Language.USEnglish:
+                        if (curDataBlock.Translations.Count > 0)
+                        {
+                            for (int i = 0; i < curDataBlock.Translations.Count; i++)
+                            {
+                                if (curDataBlock.Translations[i].Language == FP_Language.USEnglish)
+                                {
+                                    dataBlockIndex = i;
+                                    //FPDataItem.SetupInteractionLabelText(curDataBlock.Translations[i].Word);
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+
+                }
+
+                FPDataItem.SetupInteractionLabelText(curDataBlock.Translations[dataBlockIndex].Word);
+                FPDataItem.ActivateInteractionLabel(true);
+            }
+        }
         /// <summary>
         /// Assumption here is it's coming in via our Wrapper
         /// </summary>
@@ -170,7 +264,11 @@ namespace FuzzPhyte.XR.OVR
                 if (IOVRState != XRInteractorState.Locked || IOVRState != XRInteractorState.None)
                 {
                     OnInteractionHoverEvent.Invoke();
-                    HapticData.HandlePointerEventSelect(pointerEvent);
+                    if (!OpenedBefore)
+                    {
+                        HapticData.HandlePointerEventSelect(pointerEvent);
+                    }
+                    
                     HandleFPItem(IOVRType,XRInteractionStatus.Hover ,pointerEvent);
                     if(OnHoverAudioTrigger != null)
                     {
@@ -203,15 +301,17 @@ namespace FuzzPhyte.XR.OVR
                 {
                     HandleFPItem(IOVRType, XRInteractionStatus.Select, pointerEvent);
                     //are we open or closed
-
+                   
                     if (IOVRState == XRInteractorState.Closed)
                     {
                         IOVRState = XRInteractorState.Open;
                         OnInteractionOpenedEvent.Invoke();
-                        if(OnSelectAudioTriggerOpen != null)
+                        OpenedBefore = true;
+                        if (OnSelectAudioTriggerOpen != null)
                         {
                             OnSelectAudioTriggerOpen.PlayAudio();
                         }
+                        
                     }
                     else
                     {
@@ -220,6 +320,18 @@ namespace FuzzPhyte.XR.OVR
                         if (OnSelectAudioTriggerClosed != null)
                         {
                             OnSelectAudioTriggerClosed.PlayAudio();
+                        }
+                        if (UseGenericTagAfterOpen)
+                        {
+                            if (OpenedBefore && !processGenericTag)
+                            {
+                                if (tagDelayRoutine != null)
+                                {
+                                    StopCoroutine(tagDelayRoutine);
+                                }
+                                tagDelayRoutine = StartCoroutine(DelayShowGenericOVRTag(5f));
+                                processGenericTag = true;
+                            }
                         }
                     }
                     if (OneTimeSelectMode)
@@ -236,5 +348,6 @@ namespace FuzzPhyte.XR.OVR
                 FPDataItem.EventActionPassedBack(theTypeOfXR, XRInteraction, hand);
             }
         }
+
     }
 }
