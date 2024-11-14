@@ -37,11 +37,8 @@ namespace FuzzPhyte.XR.OVR
         [SerializeField]protected bool processDetailedLabel = false;
         [SerializeField]protected float delayBeforeDetailedLabel = 10f;
         public UnityEvent DetailedLabelPriorEvent;
-        protected InteractableObjectLabel interactableLabelRef;
-        protected TMP_Text interactableTextLabelRef;
         public bool OneTimeSelectMode = false;
         public bool UseGenericTagAfterOpen = true;
-        public FP_Language OVRTagLanguage;
         protected Coroutine tagDelayRoutine;
         protected bool OpenedBefore = false;
         protected bool processGenericTag = false;
@@ -83,25 +80,6 @@ namespace FuzzPhyte.XR.OVR
                 if(IOVRState == XRInteractorState.Open)
                 {
                     OnInteractionOpenedEvent.Invoke();
-                }
-            }
-            if(FPDataItem != null && FPDataItem.InteractionLabelRoot!=null)
-            {
-                interactableLabelRef = FPDataItem.InteractionLabelRoot.GetComponent<InteractableObjectLabel>();
-                if (interactableLabelRef != null)
-                {
-                    for(int i=0;i< FPDataItem.DetailedLabelData.ThemeData.FontSettings.Count; i++)
-                    {
-                        var aFontSetting = FPDataItem.DetailedLabelData.ThemeData.FontSettings[i];
-                        if(aFontSetting.Label == FontSettingLabel.Footer)
-                        {
-                            interactableTextLabelRef = interactableLabelRef.GetComponentInChildren<TMP_Text>();
-                            if (interactableTextLabelRef != null)
-                            {
-                                FontSettingSetup(aFontSetting, interactableTextLabelRef);
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -233,57 +211,7 @@ namespace FuzzPhyte.XR.OVR
         {
             if (OpenedBefore)
             {
-                //var curLanguage = FPDataItem.StartingFPLanguage;
-                var curDataBlock = FPDataItem.DetailedLabelData.VocabData;
-                int dataBlockIndex = 0;
-                switch (OVRTagLanguage)
-                {
-                    case FP_Language.French:
-                        if(curDataBlock.Translations.Count > 0)
-                        {
-                            for(int i = 0; i < curDataBlock.Translations.Count; i++)
-                            {
-                                if (curDataBlock.Translations[i].Language == FP_Language.French)
-                                {
-                                    dataBlockIndex = i;
-                                    //FPDataItem.SetupInteractionLabelText(curDataBlock.Translations[i].Word);
-                                    break;
-                                }
-                            }
-                        }
-                        break;
-                    case FP_Language.Spanish:
-                        if(curDataBlock.Translations.Count > 0)
-                        {
-                            for (int i = 0; i < curDataBlock.Translations.Count; i++)
-                            {
-                                if (curDataBlock.Translations[i].Language == FP_Language.Spanish)
-                                {
-                                    dataBlockIndex = i;
-                                    //FPDataItem.SetupInteractionLabelText(curDataBlock.Translations[i].Word);
-                                    break;
-                                }
-                            }
-                        }
-                        break;
-                    case FP_Language.USEnglish:
-                        if (curDataBlock.Translations.Count > 0)
-                        {
-                            for (int i = 0; i < curDataBlock.Translations.Count; i++)
-                            {
-                                if (curDataBlock.Translations[i].Language == FP_Language.USEnglish)
-                                {
-                                    dataBlockIndex = i;
-                                    //FPDataItem.SetupInteractionLabelText(curDataBlock.Translations[i].Word);
-                                    break;
-                                }
-                            }
-                        }
-                        break;
-
-                }
-
-                FPDataItem.SetupInteractionLabelText(curDataBlock.Translations[dataBlockIndex].Word);
+                FPDataItem.SetupInteractionLabelText();
                 FPDataItem.ActivateInteractionLabel(true);
             }
         }
