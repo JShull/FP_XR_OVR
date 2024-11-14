@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce33cf22d5436eb43ab841dd6d615194, type: 3}
+  m_Name: Jeans_SPANISH
+  m_EditorClassIdentifier: 
+  UniqueID: JeansSPANISH
+  Word: jeans
+  IPAPronunciation: "ba\u02C8ke\u027Eos"
+  Language: 2
+  Definition: Pantalones informales hechos de tela de mezclilla.
+  WordAudio:
+    AudioClip: {fileID: 8300000, guid: c14f94a07b534b642aa45868066729a4, type: 3}
+    URLAudioType: 13
+    URLReference: 
+  DefinitionAudio:
+    AudioClip: {fileID: 8300000, guid: 7df65e1a9e01e0640b6fd130adb6e168, type: 3}
+    URLAudioType: 13
+    URLReference: 
+  Translations:
+  - {fileID: 11400000, guid: c42d4759f0112df4b9de4fcb6c50b550, type: 2}
+  - {fileID: 11400000, guid: 5a320754735ac25479e55e96d3694fc7, type: 2}

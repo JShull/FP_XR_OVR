@@ -2153,7 +2153,7 @@ MonoBehaviour:
     TagData: {fileID: 0}
     VocabData: {fileID: 11400000, guid: 079a6f0b4b4cf6e498aa510702969b5a, type: 2}
     ThemeData: {fileID: 11400000, guid: 0e6318efdbcca7741819ece7bb48ca5b, type: 2}
-  StartingFPLanguage: 0
+  StartingFPLanguage: 3
   StartDetailedLabelOnStart: 0
   interfaceObjects: []
   currentSocket: {fileID: 0}

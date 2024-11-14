@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce33cf22d5436eb43ab841dd6d615194, type: 3}
+  m_Name: Suitcase_SPANISH
+  m_EditorClassIdentifier: 
+  UniqueID: SuitcaseSPANISH
+  Word: Maleta
+  IPAPronunciation: "ma\u02C8leta"
+  Language: 2
+  Definition: "Un estuche port\xE1til utilizado para llevar ropa y objetos personales
+    al viajar.\n"
+  WordAudio:
+    AudioClip: {fileID: 8300000, guid: 6fc153f79f48ad2429e2c81e1098c98a, type: 3}
+    URLAudioType: 13
+    URLReference: 
+  DefinitionAudio:
+    AudioClip: {fileID: 8300000, guid: 31e2ec5da722c2d41835108c6b5a3437, type: 3}
+    URLAudioType: 13
+    URLReference: 
+  Translations:
+  - {fileID: 11400000, guid: 87af098da2b743d4a98d65c22e8b0efe, type: 2}
+  - {fileID: 11400000, guid: db6f9dff1d64d794a955d840643c0a18, type: 2}

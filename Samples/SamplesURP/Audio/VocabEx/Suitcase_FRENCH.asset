@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce33cf22d5436eb43ab841dd6d615194, type: 3}
+  m_Name: Suitcase_FRENCH
+  m_EditorClassIdentifier: 
+  UniqueID: SuitcaseFRENCH
+  Word: valise
+  IPAPronunciation: va.liz
+  Language: 3
+  Definition: "Une mallette utilis\xE9e pour transporter des v\xEAtements et des
+    affaires personnelles lors des d\xE9placements."
+  WordAudio:
+    AudioClip: {fileID: 8300000, guid: ad06aae0ef7dba54aa42f9910c774d37, type: 3}
+    URLAudioType: 13
+    URLReference: 
+  DefinitionAudio:
+    AudioClip: {fileID: 8300000, guid: de1ec277ca5da3d418d98c6763b76807, type: 3}
+    URLAudioType: 13
+    URLReference: 
+  Translations:
+  - {fileID: 11400000, guid: 87af098da2b743d4a98d65c22e8b0efe, type: 2}
+  - {fileID: 11400000, guid: 500b1943e6b912040845f1249632a7e0, type: 2}

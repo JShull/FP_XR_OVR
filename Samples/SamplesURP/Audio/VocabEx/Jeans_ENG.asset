@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce33cf22d5436eb43ab841dd6d615194, type: 3}
+  m_Name: Jeans_ENG
+  m_EditorClassIdentifier: 
+  UniqueID: JeansDEFN
+  Word: jeans
+  IPAPronunciation: "d\u0292i\u02D0nz"
+  Language: 1
+  Definition: Casual pants made of denim fabric.
+  WordAudio:
+    AudioClip: {fileID: 8300000, guid: 24e3a0ee9e1531f44a57aa45fe035f93, type: 3}
+    URLAudioType: 13
+    URLReference: 
+  DefinitionAudio:
+    AudioClip: {fileID: 8300000, guid: dd3b0773f4450734ebd95423216cb520, type: 3}
+    URLAudioType: 13
+    URLReference: 
+  Translations:
+  - {fileID: 11400000, guid: 5a320754735ac25479e55e96d3694fc7, type: 2}
+  - {fileID: 11400000, guid: 242d2e0bac8a0f74ab06a67dbaed6e4a, type: 2}
