@@ -27,7 +27,7 @@ namespace FuzzPhyte.XR.OVR
         public GameObject CloseInteractableButtonParentRef;
         [Tooltip("Used to clear/close out other videos")]
         public UnityEvent OnVideoOpenEvent;
-        void Start()
+        public virtual void Start()
         {
             OnVideoOpenEvent.Invoke();
             CloseInteractableButtonParentRef.SetActive(false);
@@ -37,13 +37,13 @@ namespace FuzzPhyte.XR.OVR
             }
             
         }
-        IEnumerator SetupAndPlay()
+        protected IEnumerator SetupAndPlay()
         {
             SetupVideoPlayer();
             yield return new WaitForEndOfFrame();
             PlayVideo();
         }
-        public void SetupVideoPlayer()
+        public virtual void SetupVideoPlayer()
         {
             VideoPlayerSystem.playOnAwake = false;
             VideoPlayerSystem.clip = videoClip;
@@ -70,7 +70,7 @@ namespace FuzzPhyte.XR.OVR
             setupComplete = true;
         }
 
-        public void PlayVideo()
+        public virtual void PlayVideo()
         {
             if (!setupComplete)
             {
@@ -95,14 +95,14 @@ namespace FuzzPhyte.XR.OVR
             }
         }
 
-        public void PauseVideo()
+        public virtual void PauseVideo()
         {
             if (VideoPlayerSystem.isPlaying)
             {
                 VideoPlayerSystem.Pause();
             }
         }
-        public void RestartVideo()
+        public virtual void RestartVideo()
         {
             if (!setupComplete)
             {
@@ -111,11 +111,11 @@ namespace FuzzPhyte.XR.OVR
             }
             StartCoroutine(VideoRestart());
         }
-        public void CloseButtonPushed()
+        public virtual void CloseButtonPushed()
         {
             Destroy(gameObject,0.1f);
         }
-        public void DisplayCloseButton()
+        public virtual void DisplayCloseButton()
         {
             if (!KeepPointableHidden)
             {

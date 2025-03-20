@@ -8,7 +8,7 @@ namespace FuzzPhyte.XR.OVR
     using UnityEngine.Events;
     using System.Collections;
     using TMPro;
-    using Oculus.Interaction.Samples;
+    //using Oculus.Interaction.Samples;
     /// <summary>
     /// Designed to work with the IPointerEvents coming in via like the EventWrapper from the Oculus SDK
     /// </summary>
