@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ed79d490ae1b047849d42604375247, type: 3}
+  m_Name: RightController
+  m_EditorClassIdentifier: 
+  UniqueID: RightOVRBaby
+  ControllerStartHandedness: 1
+  feedbacks:
+  - Button: 3
+    ButtonInteractionStates:
+    - XRState: 0
+      ButtonSound: {fileID: 8300000, guid: 650628ee6a349004590093c2502a8e31, type: 3}
+      LabelText: A NA
+      Icon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      LabelFontSetting: {fileID: 11400000, guid: 4569faae0310f2c419ecb08a3fd793d3, type: 2}
+    - XRState: 2
+      ButtonSound: {fileID: 8300000, guid: f635368d8c7c27b42a8fed5d67d5c0e9, type: 3}
+      LabelText: a
+      Icon: {fileID: 21300000, guid: 2293d0414c7cd0142b959709466892c4, type: 3}
+      LabelFontSetting: {fileID: 11400000, guid: 35d4560a7e94e31449c1192941095dc8, type: 2}
+    - XRState: 3
+      ButtonSound: {fileID: 8300000, guid: ca0a7cbad9e44ec44a3ff6a5f80eb379, type: 3}
+      LabelText: A
+      Icon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      LabelFontSetting: {fileID: 11400000, guid: 4569faae0310f2c419ecb08a3fd793d3, type: 2}
+    - XRState: 9
+      ButtonSound: {fileID: 8300000, guid: fb003fe86bb471649a70dadf1e8bfe76, type: 3}
+      LabelText: '!A!'
+      Icon: {fileID: 21300000, guid: 6683a82fbbf992740ad3d645d9d58c0c, type: 3}
+      LabelFontSetting: {fileID: 11400000, guid: 4d784ba8c8ead554bb5bc761e93364d2, type: 2}
+    ActionIcon: {fileID: 0}
+    AnimationSpriteSheet: {fileID: 0}
+  - Button: 4
+    ButtonInteractionStates:
+    - XRState: 0
+      ButtonSound: {fileID: 8300000, guid: ca0a7cbad9e44ec44a3ff6a5f80eb379, type: 3}
+      LabelText: B NA
+      Icon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      LabelFontSetting: {fileID: 11400000, guid: 4569faae0310f2c419ecb08a3fd793d3, type: 2}
+    - XRState: 2
+      ButtonSound: {fileID: 8300000, guid: f635368d8c7c27b42a8fed5d67d5c0e9, type: 3}
+      LabelText: b
+      Icon: {fileID: 21300000, guid: 2293d0414c7cd0142b959709466892c4, type: 3}
+      LabelFontSetting: {fileID: 11400000, guid: 35d4560a7e94e31449c1192941095dc8, type: 2}
+    - XRState: 3
+      ButtonSound: {fileID: 8300000, guid: ca0a7cbad9e44ec44a3ff6a5f80eb379, type: 3}
+      LabelText: B
+      Icon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      LabelFontSetting: {fileID: 11400000, guid: 4569faae0310f2c419ecb08a3fd793d3, type: 2}
+    - XRState: 9
+      ButtonSound: {fileID: 8300000, guid: fb003fe86bb471649a70dadf1e8bfe76, type: 3}
+      LabelText: '!B!'
+      Icon: {fileID: 21300000, guid: 6683a82fbbf992740ad3d645d9d58c0c, type: 3}
+      LabelFontSetting: {fileID: 11400000, guid: 4d784ba8c8ead554bb5bc761e93364d2, type: 2}
+    ActionIcon: {fileID: 0}
+    AnimationSpriteSheet: {fileID: 0}
+  DescriptionNotes: Left Controller Prefab Test
