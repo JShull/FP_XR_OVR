@@ -20,47 +20,135 @@ MonoBehaviour:
     - XRState: 0
       ButtonSound: {fileID: 8300000, guid: 650628ee6a349004590093c2502a8e31, type: 3}
       LabelText: A NA
-      Icon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      Icon: {fileID: 21300000, guid: a7facc22c42c17a479041dbe9f526859, type: 3}
+      IconColor: {r: 1, g: 1, b: 1, a: 1}
       LabelFontSetting: {fileID: 11400000, guid: 4569faae0310f2c419ecb08a3fd793d3, type: 2}
+      ScaleAdjust: 1
+      HintIcon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      HintIconColor: {r: 0, g: 0.8446784, b: 1, a: 1}
+      InformationIcon: {fileID: 21300000, guid: 2293d0414c7cd0142b959709466892c4, type: 3}
+      InformationIconColor: {r: 1, g: 0.7529564, b: 0, a: 1}
     - XRState: 2
       ButtonSound: {fileID: 8300000, guid: f635368d8c7c27b42a8fed5d67d5c0e9, type: 3}
       LabelText: a
-      Icon: {fileID: 21300000, guid: 2293d0414c7cd0142b959709466892c4, type: 3}
+      Icon: {fileID: 21300000, guid: 30fab44e739790a40af57854f120c4df, type: 3}
+      IconColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
       LabelFontSetting: {fileID: 11400000, guid: 35d4560a7e94e31449c1192941095dc8, type: 2}
+      ScaleAdjust: 1
+      HintIcon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      HintIconColor: {r: 0, g: 0.8446784, b: 1, a: 1}
+      InformationIcon: {fileID: 21300000, guid: 2293d0414c7cd0142b959709466892c4, type: 3}
+      InformationIconColor: {r: 1, g: 0.7529564, b: 0, a: 1}
     - XRState: 3
       ButtonSound: {fileID: 8300000, guid: ca0a7cbad9e44ec44a3ff6a5f80eb379, type: 3}
       LabelText: A
-      Icon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      Icon: {fileID: 21300000, guid: a7facc22c42c17a479041dbe9f526859, type: 3}
+      IconColor: {r: 1, g: 1, b: 1, a: 1}
       LabelFontSetting: {fileID: 11400000, guid: 4569faae0310f2c419ecb08a3fd793d3, type: 2}
+      ScaleAdjust: 1
+      HintIcon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      HintIconColor: {r: 0, g: 0.8446784, b: 1, a: 1}
+      InformationIcon: {fileID: 21300000, guid: 2293d0414c7cd0142b959709466892c4, type: 3}
+      InformationIconColor: {r: 1, g: 0.7529564, b: 0, a: 1}
+    - XRState: 8
+      ButtonSound: {fileID: 0}
+      LabelText: A
+      Icon: {fileID: 21300000, guid: a7facc22c42c17a479041dbe9f526859, type: 3}
+      IconColor: {r: 1, g: 1, b: 1, a: 1}
+      LabelFontSetting: {fileID: 11400000, guid: 4569faae0310f2c419ecb08a3fd793d3, type: 2}
+      ScaleAdjust: 1
+      HintIcon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      HintIconColor: {r: 0, g: 0.8446784, b: 1, a: 1}
+      InformationIcon: {fileID: 21300000, guid: 2293d0414c7cd0142b959709466892c4, type: 3}
+      InformationIconColor: {r: 1, g: 0.7529564, b: 0, a: 1}
+    - XRState: 1
+      ButtonSound: {fileID: 0}
+      LabelText: A
+      Icon: {fileID: 21300000, guid: a7facc22c42c17a479041dbe9f526859, type: 3}
+      IconColor: {r: 1, g: 0.7978087, b: 0.504717, a: 1}
+      LabelFontSetting: {fileID: 11400000, guid: 4569faae0310f2c419ecb08a3fd793d3, type: 2}
+      ScaleAdjust: 2
+      HintIcon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      HintIconColor: {r: 0, g: 0.8446784, b: 1, a: 1}
+      InformationIcon: {fileID: 21300000, guid: 2293d0414c7cd0142b959709466892c4, type: 3}
+      InformationIconColor: {r: 1, g: 0.7529564, b: 0, a: 1}
     - XRState: 9
       ButtonSound: {fileID: 8300000, guid: fb003fe86bb471649a70dadf1e8bfe76, type: 3}
       LabelText: '!A!'
-      Icon: {fileID: 21300000, guid: 6683a82fbbf992740ad3d645d9d58c0c, type: 3}
+      Icon: {fileID: 21300000, guid: e3ec4b4bcebf5c14ca89af3ff1a6f1ed, type: 3}
+      IconColor: {r: 1, g: 0.35686275, b: 0, a: 0.78431374}
       LabelFontSetting: {fileID: 11400000, guid: 4d784ba8c8ead554bb5bc761e93364d2, type: 2}
-    ActionIcon: {fileID: 0}
-    AnimationSpriteSheet: {fileID: 0}
+      ScaleAdjust: 1
+      HintIcon: {fileID: 21300000, guid: 511ca3270560ee541b6c67c4ab46711f, type: 3}
+      HintIconColor: {r: 1, g: 0.35686275, b: 0, a: 0.49019608}
+      InformationIcon: {fileID: 21300000, guid: 511ca3270560ee541b6c67c4ab46711f, type: 3}
+      InformationIconColor: {r: 1, g: 0.35686275, b: 0, a: 0.49019608}
   - Button: 4
     ButtonInteractionStates:
     - XRState: 0
       ButtonSound: {fileID: 8300000, guid: ca0a7cbad9e44ec44a3ff6a5f80eb379, type: 3}
       LabelText: B NA
-      Icon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      Icon: {fileID: 21300000, guid: f251f2702cd43ae4cafc8d6901047a3d, type: 3}
+      IconColor: {r: 1, g: 1, b: 1, a: 1}
       LabelFontSetting: {fileID: 11400000, guid: 4569faae0310f2c419ecb08a3fd793d3, type: 2}
+      ScaleAdjust: 1
+      HintIcon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      HintIconColor: {r: 0, g: 0.8446784, b: 1, a: 1}
+      InformationIcon: {fileID: 21300000, guid: 2293d0414c7cd0142b959709466892c4, type: 3}
+      InformationIconColor: {r: 1, g: 0.7529564, b: 0, a: 1}
     - XRState: 2
       ButtonSound: {fileID: 8300000, guid: f635368d8c7c27b42a8fed5d67d5c0e9, type: 3}
       LabelText: b
-      Icon: {fileID: 21300000, guid: 2293d0414c7cd0142b959709466892c4, type: 3}
+      Icon: {fileID: 21300000, guid: ffdf4ca9c348b054fa57a84dd9ee0f04, type: 3}
+      IconColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
       LabelFontSetting: {fileID: 11400000, guid: 35d4560a7e94e31449c1192941095dc8, type: 2}
+      ScaleAdjust: 1
+      HintIcon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      HintIconColor: {r: 0, g: 0.8446784, b: 1, a: 1}
+      InformationIcon: {fileID: 21300000, guid: 2293d0414c7cd0142b959709466892c4, type: 3}
+      InformationIconColor: {r: 1, g: 0.7529564, b: 0, a: 1}
     - XRState: 3
       ButtonSound: {fileID: 8300000, guid: ca0a7cbad9e44ec44a3ff6a5f80eb379, type: 3}
       LabelText: B
-      Icon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      Icon: {fileID: 21300000, guid: f251f2702cd43ae4cafc8d6901047a3d, type: 3}
+      IconColor: {r: 1, g: 1, b: 1, a: 1}
       LabelFontSetting: {fileID: 11400000, guid: 4569faae0310f2c419ecb08a3fd793d3, type: 2}
+      ScaleAdjust: 1
+      HintIcon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      HintIconColor: {r: 0, g: 0.8446784, b: 1, a: 1}
+      InformationIcon: {fileID: 21300000, guid: 2293d0414c7cd0142b959709466892c4, type: 3}
+      InformationIconColor: {r: 1, g: 0.7529564, b: 0, a: 1}
+    - XRState: 1
+      ButtonSound: {fileID: 0}
+      LabelText: B
+      Icon: {fileID: 21300000, guid: f251f2702cd43ae4cafc8d6901047a3d, type: 3}
+      IconColor: {r: 1, g: 0.89756644, b: 0.5707547, a: 1}
+      LabelFontSetting: {fileID: 11400000, guid: 4569faae0310f2c419ecb08a3fd793d3, type: 2}
+      ScaleAdjust: 2
+      HintIcon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      HintIconColor: {r: 0, g: 0.8446784, b: 1, a: 1}
+      InformationIcon: {fileID: 21300000, guid: 2293d0414c7cd0142b959709466892c4, type: 3}
+      InformationIconColor: {r: 1, g: 0.7529564, b: 0, a: 1}
+    - XRState: 8
+      ButtonSound: {fileID: 0}
+      LabelText: B
+      Icon: {fileID: 21300000, guid: f251f2702cd43ae4cafc8d6901047a3d, type: 3}
+      IconColor: {r: 1, g: 1, b: 1, a: 1}
+      LabelFontSetting: {fileID: 11400000, guid: 4569faae0310f2c419ecb08a3fd793d3, type: 2}
+      ScaleAdjust: 1
+      HintIcon: {fileID: 21300000, guid: bf551fdbf5d651748985243906d2cede, type: 3}
+      HintIconColor: {r: 0, g: 0.8446784, b: 1, a: 1}
+      InformationIcon: {fileID: 21300000, guid: 2293d0414c7cd0142b959709466892c4, type: 3}
+      InformationIconColor: {r: 1, g: 0.7529564, b: 0, a: 1}
     - XRState: 9
       ButtonSound: {fileID: 8300000, guid: fb003fe86bb471649a70dadf1e8bfe76, type: 3}
       LabelText: '!B!'
-      Icon: {fileID: 21300000, guid: 6683a82fbbf992740ad3d645d9d58c0c, type: 3}
+      Icon: {fileID: 21300000, guid: e3ec4b4bcebf5c14ca89af3ff1a6f1ed, type: 3}
+      IconColor: {r: 1, g: 0.35686275, b: 0, a: 0.78431374}
       LabelFontSetting: {fileID: 11400000, guid: 4d784ba8c8ead554bb5bc761e93364d2, type: 2}
-    ActionIcon: {fileID: 0}
-    AnimationSpriteSheet: {fileID: 0}
-  DescriptionNotes: Left Controller Prefab Test
+      ScaleAdjust: 1
+      HintIcon: {fileID: 21300000, guid: 511ca3270560ee541b6c67c4ab46711f, type: 3}
+      HintIconColor: {r: 1, g: 0.35686275, b: 0, a: 0.49019608}
+      InformationIcon: {fileID: 21300000, guid: 511ca3270560ee541b6c67c4ab46711f, type: 3}
+      InformationIconColor: {r: 1, g: 0.35686275, b: 0, a: 0.49019608}
+  DescriptionNotes: 'Right Controller: Camera, Journal'
