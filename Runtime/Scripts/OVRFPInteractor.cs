@@ -96,6 +96,10 @@ namespace FuzzPhyte.XR.OVR
             font.fontStyle = theFontSetting.FontStyle;
             font.alignment = theFontSetting.FontAlignment;
         }
+        public virtual XRHandedness ReturnHand()
+        {
+            return hand;
+        }
         #region Ray Wrapper
         public virtual void HandlePointerEventHoverRay(PointerEvent pointerEvent)
         {
