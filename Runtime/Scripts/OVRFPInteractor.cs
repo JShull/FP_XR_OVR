@@ -135,6 +135,12 @@ namespace FuzzPhyte.XR.OVR
             IdentifyHand(pointerEvent);
             HandlePointerEventSelect(pointerEvent);
         }
+        public virtual void HandlePointerEventUnSelectGrab(PointerEvent pointerEvent)
+        {
+            IOVRType = XRInteractorType.Grab;
+            IdentifyHand(pointerEvent);
+            HandlePointerEventUnSelect(pointerEvent);
+        }
         #endregion
         #region Poke Wrapper
         public virtual void HandlePointerEventHoverPoke(PointerEvent pointerEvent)
@@ -300,6 +306,16 @@ namespace FuzzPhyte.XR.OVR
                     {
                         InteractorStatus = SequenceStatus.Locked;
                     }
+                }
+            }
+        }
+        public virtual void HandlePointerEventUnSelect(PointerEvent pointerEvent)
+        {
+            if (InteractorStatus != SequenceStatus.Locked)
+            {
+                if (IOVRState != XRInteractorState.Locked || IOVRState != XRInteractorState.None)
+                {
+                    HandleFPItem(IOVRType, XRInteractionStatus.Unselect, pointerEvent);
                 }
             }
         }
