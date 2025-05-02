@@ -37,6 +37,8 @@ namespace FuzzPhyte.XR.OVR
         protected bool rightPrimeTouched;
         [SerializeField]
         protected bool rightSecondaryTouched;
+        [SerializeField]
+        protected bool secondaryHoverForcedOff = false;
         //protected Dictionary<XRButton,bool>leftControllerHover = new Dictionary<XRButton,bool>();
         //protected Dictionary<XRButton,bool>rightControllerHover = new Dictionary<XRButton,bool>();
         //if we need to cache some stuff for state checks later
@@ -84,8 +86,6 @@ namespace FuzzPhyte.XR.OVR
         {
             // Primary Button (X for Left, A for Right)
             // touching state
-            //var PrimaryThumbTouch = OVRInput.Get(OVRInput.NearTouch.PrimaryThumbButtons);
-            //Debug.LogWarning($"Near Touch Primary? {PrimaryThumbTouch}");
             if (OVRInput.Get(OVRInput.Touch.One,GetOVRController(hand)))
             {
                 if (OVRInput.GetDown(OVRInput.Button.One, GetOVRController(hand)))
@@ -110,7 +110,6 @@ namespace FuzzPhyte.XR.OVR
             {
                 //not touching this button
                 //OnControllerPrimaryTouchOff(curController, hand);
-                
                 if(hand==XRHandedness.Left && leftPrimeTouched == true)
                 {
                     OnControllerPrimaryTouchOff(curController, hand);
@@ -121,7 +120,6 @@ namespace FuzzPhyte.XR.OVR
                     OnControllerPrimaryTouchOff(curController, hand);
                     rightPrimeTouched = false;
                 }
-                
             }
 
             if (OVRInput.GetUp(OVRInput.Button.One, GetOVRController(hand)))
@@ -129,8 +127,8 @@ namespace FuzzPhyte.XR.OVR
                 OnControllerPrimaryButtonOnUp(curController, hand);
             }
 
-
             // Secondary Button (Y for Left, B for Right)
+            // touch
             if (OVRInput.Get(OVRInput.Touch.Two, GetOVRController(hand)))
             {
                 if (OVRInput.GetDown(OVRInput.Button.Two, GetOVRController(hand)))
@@ -153,8 +151,15 @@ namespace FuzzPhyte.XR.OVR
                         rightSecondaryTouched = true;
                     }
                     //force off touch on prime button
-                    OnControllerPrimaryTouchOff(curController, hand);
+                    /*
+                    if (!secondaryHoverForcedOff)
+                    {
+                        OnControllerPrimaryTouchOff(curController, hand);
+                        secondaryHoverForcedOff = true;
+                    }
+                    
                     leftPrimeTouched = false;
+                    */
                 }
                 //if we are touching two we aren't touching one at all
                 //OnControllerPrimaryTouchOff(curController, hand);
