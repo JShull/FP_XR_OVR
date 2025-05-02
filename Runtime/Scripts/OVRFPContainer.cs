@@ -136,7 +136,7 @@ namespace FuzzPhyte.XR.OVR
         /// </summary>
         public virtual void MoveContainerCheckLatches()
         {
-            Debug.LogWarning($"Moving Container!!!");
+            //Debug.LogWarning($"Moving Container!!!");
             angleCheck = 0;
             switch (ContainerRotateManager.RotationAxis)
             {
