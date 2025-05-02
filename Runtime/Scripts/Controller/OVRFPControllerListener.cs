@@ -1,4 +1,3 @@
-
 namespace FuzzPhyte.XR.OVR
 {
     using UnityEngine;
