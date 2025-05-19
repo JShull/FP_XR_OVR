@@ -39,6 +39,7 @@ namespace FuzzPhyte.XR.OVR
                     if(hit.collider.gameObject.GetComponent<FP_PictureWorldItem>())
                     {
                         var pictureWorldItem = hit.collider.gameObject.GetComponent<FP_PictureWorldItem>();
+                        pictureWorldItem.ItemCamRaycastPictureTaken();
                         if (pictureWorldItem.WorldItemRef != null)
                         {
                             //lets use our interface
@@ -59,6 +60,7 @@ namespace FuzzPhyte.XR.OVR
                             
                         }
                     }
+                    
                     CapturePicture(hit.point, wordTag);
                     TextRef.text = wordTag;
                 }
@@ -72,17 +74,20 @@ namespace FuzzPhyte.XR.OVR
         public virtual void FireCameraRayUpdate()
         {
             Ray ray = new Ray(Ray_DSLRCamera.position, Ray_DSLRCamera.forward);
+            
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
                 string tag = hit.collider.gameObject.tag;
+                Debug.DrawRay(ray.origin, ray.direction * 5, Color.red, 2f);
                 if (!IsTagAccepted(tag))
                 {
                     return;
                 }
                 if (hit.collider.gameObject.GetComponent<FP_PictureWorldItem>())
                 {
+                    Debug.DrawRay(ray.origin, ray.direction * 6, Color.green, 4f);
                     hit.collider.gameObject.GetComponent<FP_PictureWorldItem>().ItemCamRaycastHit();
                 }
             }
@@ -100,10 +105,13 @@ namespace FuzzPhyte.XR.OVR
             {
                 return true;
             }
-            foreach (var acceptedTag in acceptedTags)
+            for(int i = 0; i < acceptedTags.Length; i++)
             {
-                if (tag == acceptedTag)
+                var aTag = acceptedTags[i];
+                if(string.Equals(aTag, tag, System.StringComparison.OrdinalIgnoreCase))
+                {
                     return true;
+                }
             }
             return false;
         }
