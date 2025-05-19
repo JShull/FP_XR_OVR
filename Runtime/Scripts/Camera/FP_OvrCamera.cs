@@ -7,6 +7,7 @@ namespace FuzzPhyte.XR.OVR
     using TMPro;
     using Oculus.Interaction;
     using Oculus.Interaction.Input;
+    using FuzzPhyte.Utility;
 
     public class FP_OvrCamera : MonoBehaviour, IHandGrabUseDelegate
     {
@@ -20,6 +21,7 @@ namespace FuzzPhyte.XR.OVR
         public FP_PictureCapture PictureCaptureData;
         public Material TargetInstanceMaterial;
         public Transform ImageLocationSpawn;
+        public FP_Language ModuleLanguage;
         [Range(1,10f)]public float CameraBrightness=2f;
         [Space]
         [SerializeField] private float _triggerSpeed = 3f;
@@ -31,6 +33,8 @@ namespace FuzzPhyte.XR.OVR
         public Handedness camHand;
         public bool Inhand;
         public bool printingPhoto;
+        [Tooltip("If we want to continously fire a raycast to get information")]
+        public bool UseUpdateMode = false;
         [SerializeField]protected GameObject lastImage;
         [Space]
         [Header("Haptics")]
@@ -80,6 +84,13 @@ namespace FuzzPhyte.XR.OVR
                 
             }
             return 0;
+        }
+        /// <summary>
+        /// Fire a raycast during update to pull back an object for visual changes in the camera rendering mask
+        /// </summary>
+        public virtual void FireRaycastUpdate()
+        {
+
         }
         public void FireHaptics()
         {
@@ -136,6 +147,7 @@ namespace FuzzPhyte.XR.OVR
                 //check for trigger press on left or right?
                 if(camHand == Handedness.Left)
                 {
+                    //consider turning this into an event listener
                     if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
                     {
                         ComputeUseStrength(1);
@@ -150,10 +162,13 @@ namespace FuzzPhyte.XR.OVR
                         printingPhoto = true;
                     }
                 }
-                
+                if (UseUpdateMode)
+                {
+                    PictureCaptureData.FireCameraRayUpdate();
+                }
             }
         }
-        public void TakePictureCaptureAndApply()
+        public virtual void TakePictureCaptureAndApply()
         {
             if(_lastCamTime<Time.realtimeSinceStartup)
             {
