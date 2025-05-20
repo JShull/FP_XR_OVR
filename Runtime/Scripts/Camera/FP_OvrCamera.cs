@@ -85,13 +85,7 @@ namespace FuzzPhyte.XR.OVR
             }
             return 0;
         }
-        /// <summary>
-        /// Fire a raycast during update to pull back an object for visual changes in the camera rendering mask
-        /// </summary>
-        public virtual void FireRaycastUpdate()
-        {
-
-        }
+        
         public void FireHaptics()
         {
             if (hapticData)
@@ -180,7 +174,7 @@ namespace FuzzPhyte.XR.OVR
                 var imgRef = ApplyTextureToMaterial(capturedTexture);
                 if (imgRef != null)
                 {
-                    PictureCaptureData.FireCameraRay(imgRef);
+                    PictureCaptureData.FireCameraRay(imgRef, ModuleLanguage);
                 }
                
                 _lastCamTime = Time.realtimeSinceStartup + 1f;
