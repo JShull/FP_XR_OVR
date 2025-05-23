@@ -36,8 +36,12 @@ namespace FuzzPhyte.XR.OVR
         public float AngleOpenRequirement = 45;
         [SerializeField]
         protected float lastLatchAngle = 0;
+        [SerializeField]
         protected bool latchGrabbed;
-
+        [SerializeField]
+        protected int maxFrameLatchGrabbed = 2000;
+        protected int numFrame = 0;
+        protected Coroutine latchRoutine;
         public virtual void LatchGrabbedPointer(PointerEvent evt)
         {
             Debug.LogWarning($"LatchGrabbed Pointer! {evt.Type.ToString()}");
@@ -48,9 +52,14 @@ namespace FuzzPhyte.XR.OVR
         //Called via Grabber/interactable
         public virtual void LatchGrabbed()
         {
+            if (latchRoutine != null)
+            { 
+                StopCoroutine(latchRoutine);
+                numFrame = 0;
+            }
             latchGrabbed = true;
             Debug.LogWarning($"Latch Grabbed!!");
-            StartCoroutine(ContinuouslyCheckLatch());
+            latchRoutine = StartCoroutine(ContinuouslyCheckLatch());
         }
         //Called via Grabber/interactable
         public virtual void LatchLetGo()
@@ -64,11 +73,16 @@ namespace FuzzPhyte.XR.OVR
             {
                 CheckLatchOpen();
                 yield return new WaitForEndOfFrame();
+                if(numFrame> maxFrameLatchGrabbed)
+                {
+                    latchGrabbed = false;
+                    numFrame = 0;
+                }
             }
         }
         protected virtual void CheckLatchOpen()
         {
-            Debug.LogWarning($"Checking Latch Open {LatchManager.RotationAxis.ToString()}");
+            //Debug.LogWarning($"Checking Latch Open {LatchManager.RotationAxis.ToString()}");
             switch (LatchManager.RotationAxis)
             {
                 case OneGrabRotateTransformer.Axis.Up:
@@ -103,6 +117,7 @@ namespace FuzzPhyte.XR.OVR
                     OnLatchStateClosed?.Invoke(LatchRequirementStatus);
                 }
             }
+            numFrame++;
         }
     }
 }
