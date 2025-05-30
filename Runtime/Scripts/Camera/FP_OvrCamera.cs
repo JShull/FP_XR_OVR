@@ -8,10 +8,14 @@ namespace FuzzPhyte.XR.OVR
     using Oculus.Interaction;
     using Oculus.Interaction.Input;
     using FuzzPhyte.Utility;
+    using System.Collections;
+    using UnityEngine.Rendering;
 
     public class FP_OvrCamera : MonoBehaviour, IHandGrabUseDelegate
     {
         public float currentStrength = 0;
+        public bool VulkanRenderer = false;
+        protected WaitForEndOfFrame waitforEndFrame;
         public UnityEvent CameraButtonPushed;
         [Space]
         [Header("Photo Op")]
@@ -41,6 +45,17 @@ namespace FuzzPhyte.XR.OVR
         public HapticReadData hapticData;
         public float Amp = 0.5f;
         public float Freq = 3f;
+        public void Start()
+        {
+            waitforEndFrame = new WaitForEndOfFrame();
+            if (VulkanRenderer)
+            {
+                CameraRenderTexture = new RenderTexture(CameraRenderTexture.width, CameraRenderTexture.height, 24, RenderTextureFormat.ARGB32);
+                CameraRenderTexture.antiAliasing = 1; // Disable MSAA for compatibility
+                CameraRenderTexture.useMipMap = false;
+                CameraRenderTexture.autoGenerateMips = false;
+            }
+        }
         #region IHandGrabUseDelegate Implementation
         public void BeginUse()
         {
@@ -167,18 +182,51 @@ namespace FuzzPhyte.XR.OVR
             if(_lastCamTime<Time.realtimeSinceStartup)
             {
                 CameraButtonPushed.Invoke();
-               
+
                 // Capture the RenderTexture to a Texture2D
-                Texture2D capturedTexture = CaptureRenderTextureToTexture2D(CameraRenderTexture);
-                // Apply the Texture2D to a new material instance
+                if (VulkanRenderer)
+                {
+                    StartCoroutine(CaptureAfterFrameVulkan(CameraRenderTexture));
+                }
+                else
+                {
+                    Texture2D capturedTexture = CaptureRenderTextureToTexture2D(CameraRenderTexture);
+                    // Apply the Texture2D to a new material instance
+                    var imgRef = ApplyTextureToMaterial(capturedTexture);
+                    if (imgRef != null)
+                    {
+                        PictureCaptureData.FireCameraRay(imgRef, ModuleLanguage);
+                    }
+                }
+                    
+               
+                _lastCamTime = Time.realtimeSinceStartup + 1f;
+            }
+        }
+        /// <summary>
+        /// Vulkan mode
+        /// </summary>
+        /// <returns></returns>
+        protected virtual IEnumerator CaptureAfterFrameVulkan(RenderTexture renderTexture)
+        {
+            yield return waitforEndFrame;
+            AsyncGPUReadback.Request(CameraRenderTexture, 0, request =>
+            {
+                if (request.hasError)
+                {
+                    Debug.LogError($"GPU readback error");
+                    return;
+                }
+                var rawData = request.GetData<Color32>();
+                Texture2D capturedTexture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGBA32, false);
+                capturedTexture.SetPixelData(rawData, 0);
+                capturedTexture.Apply();
                 var imgRef = ApplyTextureToMaterial(capturedTexture);
                 if (imgRef != null)
                 {
                     PictureCaptureData.FireCameraRay(imgRef, ModuleLanguage);
                 }
-               
-                _lastCamTime = Time.realtimeSinceStartup + 1f;
-            }
+            });
         }
 
         Texture2D CaptureRenderTextureToTexture2D(RenderTexture renderTexture)
