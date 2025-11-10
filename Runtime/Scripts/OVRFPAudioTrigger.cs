@@ -274,11 +274,11 @@ namespace FuzzPhyte.XR.OVR
     public struct OVRFPMinMaxPair
     {
         [SerializeField]
-        private bool _useRandomRange;
+        public bool _useRandomRange;
         [SerializeField]
-        private float _min;
+        public float _min;
         [SerializeField]
-        private float _max;
+        public float _max;
 
         public bool UseRandomRange => _useRandomRange;
         public float Min => _min;
