@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-03-31
+
+### 0.1.0 Added
+
+- [@JShull](https://github.com/jshull).
+  - Update for Unity 6000.4.0f1
+  - Added a `PictureTaken` event to `FP_OvrCamera` so other systems can subscribe when a photo is captured and receive the resulting `Texture2D`.
+  - Fixed the package manifest to only reference Unity packages and updated and added in the Installation folder for FP packages.
+
 ## [0.0.1] - 2024-11-07
 
 ### 0.0.1 Added

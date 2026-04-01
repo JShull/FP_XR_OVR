@@ -14,6 +14,10 @@ FP_XR_OVR is an Oculus package that works with high level [FP_XR](https://github
 
 Please see the [package.json](./package.json) file for more information.
 
+### Samples
+
+The Samplex in FP_XR_OVR require you to have the FP_XR samples loaded.
+
 ## License Notes
 
 * This software running a dual license

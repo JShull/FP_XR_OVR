@@ -1,10 +1,10 @@
 {
     "name": "com.fuzzphyte.xr.ovr",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "displayName": "FP XR OVR",
     "description": "FP XR OVR is a library designed to work with Oculus and their OVR packages.",
-    "unity": "2022.3",
-    "unityRelease": "32f1",
+    "unity": "6000.4",
+    "unityRelease": "0f1",
     "documentationUrl": "https://github.com/jshull/FP_XR_OVR/blob/main/README.md",
     "changelogUrl": "https://github.com/JShull/FP_XR_OVR/blob/main/CHANGELOG.md",
     "licensesUrl": "https://github.com/jshull/FP_XR_OVR/blob/main/LICENSE.md",
@@ -14,21 +14,14 @@
     },
     "dependencies": {
       "com.unity.mathematics": "1.3.2",
-      "com.unity.netcode.gameobjects":"2.0.0",
       "com.unity.transport":"2.3.0",
-      "com.fuzzphyte.utility":"https://github.com/jshull/FP_Utility.git",
-      "com.fuzzphyte.systemevent":"https://github.com/jshull/FP_Event.git",
-      "com.fuzzphyte.ray":"https://github.com/jshull/FP_Ray.git",
-      "com.fuzzphyte.utility.edu":"https://github.com/jshull/FP_Utility_Edu.git",
-      "com.fuzzphyte.network":"https://github.com/jshull/FP_Network.git",
-      "com.fuzzphyte.xr":"https://github.com/jshull/FP_XR.git",
-      "com.meta.xr.sdk.interaction":"69.0.1",
-      "com.meta.xr.sdk.haptics":"69.0.1"
+      "com.meta.xr.sdk.interaction":"85.0.0",
+      "com.meta.xr.sdk.haptics":"85.0.0"
     },
     "samples": [
       {
         "displayName": "FP XR OVR Samples",
-        "description": "Base XR OVR Samples.",
+        "description": "Base XR OVR Samples. **INSTALL** the FP_XR Samples first!!!",
         "path": "Samples~/SamplesURP"
       }
     ],

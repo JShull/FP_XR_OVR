@@ -1,5 +1,6 @@
 namespace FuzzPhyte.XR.OVR
 {
+    using System;
     using System.Collections.Generic;
     using UnityEngine;
     using Oculus.Interaction.HandGrab;
@@ -13,6 +14,11 @@ namespace FuzzPhyte.XR.OVR
 
     public class FP_OvrCamera : MonoBehaviour, IHandGrabUseDelegate
     {
+        /// <summary>
+        /// Raised when a picture has been captured and the final Texture2D is available.
+        /// </summary>
+        public event Action<Texture2D> PictureTaken;
+
         public float currentStrength = 0;
         public bool VulkanRenderer = false;
         protected WaitForEndOfFrame waitforEndFrame;
@@ -197,6 +203,7 @@ namespace FuzzPhyte.XR.OVR
                     {
                         PictureCaptureData.FireCameraRay(imgRef, ModuleLanguage);
                     }
+                    NotifyPictureTaken(capturedTexture);
                 }
                     
                
@@ -226,7 +233,13 @@ namespace FuzzPhyte.XR.OVR
                 {
                     PictureCaptureData.FireCameraRay(imgRef, ModuleLanguage);
                 }
+                NotifyPictureTaken(capturedTexture);
             });
+        }
+
+        protected virtual void NotifyPictureTaken(Texture2D capturedTexture)
+        {
+            PictureTaken?.Invoke(capturedTexture);
         }
 
         Texture2D CaptureRenderTextureToTexture2D(RenderTexture renderTexture)
