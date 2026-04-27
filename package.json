@@ -15,8 +15,8 @@
     "dependencies": {
       "com.unity.mathematics": "1.3.2",
       "com.unity.transport":"2.3.0",
-      "com.meta.xr.sdk.interaction":"85.0.0",
-      "com.meta.xr.sdk.haptics":"85.0.0"
+      "com.meta.xr.sdk.interaction":"201.0.0",
+      "com.meta.xr.sdk.haptics":"201.0.0"
     },
     "samples": [
       {
