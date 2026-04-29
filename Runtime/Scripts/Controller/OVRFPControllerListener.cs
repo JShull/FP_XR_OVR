@@ -39,11 +39,7 @@ namespace FuzzPhyte.XR.OVR
         protected bool rightSecondaryTouched;
         [SerializeField]
         protected bool secondaryHoverForcedOff = false;
-        //protected Dictionary<XRButton,bool>leftControllerHover = new Dictionary<XRButton,bool>();
-        //protected Dictionary<XRButton,bool>rightControllerHover = new Dictionary<XRButton,bool>();
-        //if we need to cache some stuff for state checks later
-        //protected List<ButtonFeedback> leftControllerFeedback = new List<ButtonFeedback>();
-        //protected List<ButtonFeedback> rightControllerFeedback = new List<ButtonFeedback>();
+
         #endregion
 
         public void Start() 
@@ -56,12 +52,6 @@ namespace FuzzPhyte.XR.OVR
                     Debug.LogError($"We need an FPXRControllerEventManager!");
                 }
             }
-
-            //leftControllerHover.Add(XRButton.PrimaryButton, false);
-            //leftControllerHover.Add(XRButton.SecondaryButton, false);
-            //leftControllerHover.Add(XRButton.MenuButton, false);
-            //rightControllerHover.Add(XRButton.PrimaryButton, false);
-            //rightControllerHover.Add(XRButton.SecondaryButton, false);
            
         }
         protected virtual List<ButtonLabelState> StandardStateSetup()
@@ -76,11 +66,21 @@ namespace FuzzPhyte.XR.OVR
         }
         public void Update()
         {
+            if (FPControllerManager == null)
+            {
+                FPControllerManager = FPXRControllerEventManager.Instance;
+                if (FPControllerManager == null)
+                {
+                    return;
+                }
+            }
+
             CheckControllerButtonStates(LeftController,XRHandedness.Left);
             CheckControllerButtonStates(RightController,XRHandedness.Right);
+            CheckControllerJoystickState(LeftController, XRHandedness.Left);
+            CheckControllerJoystickState(RightController, XRHandedness.Right);
         }
         #region Stub out for Controller Events
-        //ChatGPT you need to flush these out
 
         protected void CheckControllerButtonStates(Controller curController, XRHandedness hand)
         {
@@ -150,16 +150,7 @@ namespace FuzzPhyte.XR.OVR
                         OnControllerSecondaryTouch(curController, hand);
                         rightSecondaryTouched = true;
                     }
-                    //force off touch on prime button
-                    /*
-                    if (!secondaryHoverForcedOff)
-                    {
-                        OnControllerPrimaryTouchOff(curController, hand);
-                        secondaryHoverForcedOff = true;
-                    }
-                    
-                    leftPrimeTouched = false;
-                    */
+
                 }
                 //if we are touching two we aren't touching one at all
                 //OnControllerPrimaryTouchOff(curController, hand);
@@ -215,37 +206,19 @@ namespace FuzzPhyte.XR.OVR
                 OnControllerGrip(curController, hand, gripValue);
             }
         }
-        /*
-        protected bool ReturnTouchDictionary(XRHandedness hand, XRButton button)
+
+        protected virtual void CheckControllerJoystickState(Controller curController, XRHandedness hand)
         {
-            if (hand == XRHandedness.Left)
-            {
-                if (leftControllerHover.ContainsKey(button))
-                {
-                    var buttonTouch = leftControllerHover[button];
-                    if (!buttonTouch)
-                    {
-                        leftControllerHover[button] = true;
-                        return true;
-                    }
-                }
-            }
-            else
-            {
-                //right
-                if (rightControllerHover.ContainsKey(button))
-                {
-                    var buttonTouchRT = rightControllerHover[button];
-                    if (!buttonTouchRT)
-                    {
-                        rightControllerHover[button] = true;
-                        return true;
-                    }
-                }
-            }
-            return false;
+            var ovrController = GetOVRController(hand);
+            Vector2 axisValue = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, ovrController);
+            bool isTouched = OVRInput.Get(OVRInput.Touch.PrimaryThumbstick, ovrController);
+            bool isClicked = OVRInput.Get(OVRInput.Button.PrimaryThumbstick, ovrController);
+
+            OnControllerJoystickMoved(curController, hand, axisValue);
+            OnControllerJoystickTouchState(curController, hand, isTouched);
+            OnControllerJoystickClickState(curController, hand, isClicked);
         }
-        */
+
         protected OVRInput.Controller GetOVRController(XRHandedness hand)
         {
             return hand == XRHandedness.Left ? OVRInput.Controller.LTouch : OVRInput.Controller.RTouch;
@@ -318,7 +291,19 @@ namespace FuzzPhyte.XR.OVR
             //grip logic
             FPControllerManager.UpdateButtonState(hand,XRButton.Grip,XRInteractionStatus.Select,gripValue);
         }
-        
+        protected virtual void OnControllerJoystickMoved(Controller curController, XRHandedness hand, Vector2 axisValue)
+        {
+            FPControllerManager.UpdateJoystickState(hand, axisValue);
+        }
+        protected virtual void OnControllerJoystickTouchState(Controller curController, XRHandedness hand, bool isTouched)
+        {
+            FPControllerManager.UpdateJoystickTouchState(hand, isTouched);
+        }
+        protected virtual void OnControllerJoystickClickState(Controller curController, XRHandedness hand, bool isClicked)
+        {
+            FPControllerManager.UpdateJoystickClickState(hand, isClicked);
+        }
+
         #endregion
     }
 }

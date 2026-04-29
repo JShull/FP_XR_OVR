@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-04-29
+
+### 0.2.0 Added
+
+- [@JShull](https://github.com/jshull).
+  - Added OVR thumbstick axis monitoring in `OVRFPControllerListener` and forwards left/right thumbstick values to `FPXRControllerEventManager.UpdateJoystickState`.
+  - Added OVR thumbstick capacitive touch forwarding through `FPXRControllerEventManager.UpdateJoystickTouchState`.
+  - Added OVR thumbstick click forwarding through `FPXRControllerEventManager.UpdateJoystickClickState`, allowing FP_XR to emit joystick click events and drive the normalized `XRButton.Thumbstick` select/unselect path.
+
+### 0.2.0 Changed
+
+- [@JShull](https://github.com/jshull).
+  - Updated `OVRFPControllerListener` to reacquire the `FPXRControllerEventManager.Instance` if the manager is created after listener startup.
+
 ## [0.1.0] - 2026-03-31
 
 ### 0.1.0 Added

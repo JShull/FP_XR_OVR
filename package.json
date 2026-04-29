@@ -1,6 +1,6 @@
 {
     "name": "com.fuzzphyte.xr.ovr",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "displayName": "FP XR OVR",
     "description": "FP XR OVR is a library designed to work with Oculus and their OVR packages.",
     "unity": "6000.4",
