@@ -29,7 +29,11 @@ namespace FuzzPhyte.XR.OVR
         [Space]
         [Header("Associated Events")]
         public UnityEvent OnInteractionOpenedEvent;
+        [Tooltip("Only called on runtime, not on start")]
+        public UnityEvent OnInteractionOpenedSecondaryEvent;
         public UnityEvent OnInteractionClosedEvent;
+        [Tooltip("Only called on runtime, not on start")]
+        public UnityEvent OnInteractionClosedSecondaryEvent;
         public UnityEvent OnInteractionHoverEvent;
         public UnityEvent OnInteractionUnhoverEvent;
         [Space]
@@ -278,6 +282,7 @@ namespace FuzzPhyte.XR.OVR
                     {
                         IOVRState = XRInteractorState.Open;
                         OnInteractionOpenedEvent.Invoke();
+                        OnInteractionOpenedSecondaryEvent.Invoke();
                         OpenedBefore = true;
                         if (OnSelectAudioTriggerOpen != null)
                         {
@@ -289,6 +294,7 @@ namespace FuzzPhyte.XR.OVR
                     {
                         IOVRState = XRInteractorState.Closed;
                         OnInteractionClosedEvent.Invoke();
+                        OnInteractionClosedSecondaryEvent.Invoke();
                         if (OnSelectAudioTriggerClosed != null)
                         {
                             OnSelectAudioTriggerClosed.PlayAudio();
