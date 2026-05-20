@@ -11,7 +11,14 @@ namespace FuzzPhyte.XR.OVR
         OVRInput.Controller rightController = OVRInput.Controller.RTouch;
         public float Amplitude = 0.5f;
         public float Frequency = 0.9f;
+        public bool TryTimer = false;
+        public float TimerDuration = 1f;
+        private WaitForSecondsRealtime hapticTimerValue;
 
+        private void Start()
+        {
+            hapticTimerValue = new WaitForSecondsRealtime(TimerDuration);
+        }
         /// <summary>
         /// Request externally outside of the Pointer Event
         /// </summary>
@@ -55,7 +62,11 @@ namespace FuzzPhyte.XR.OVR
                 }
                 Controller controllerData = cData.GetComponent<Controller>();
                 //Debug.LogWarning($"Right or Left??: I'm the {controllerData.Handedness.ToString()} controller");
-
+                if (TryTimer)
+                {
+                    StartHapticsTimer(controllerData.Handedness);
+                    return;
+                }
                 StartHaptics(controllerData.Handedness);
             }
             catch (System.Exception e)
@@ -73,26 +84,35 @@ namespace FuzzPhyte.XR.OVR
         {
             StartHaptics(Handedness.Left);
         }
-        public virtual void StartHapticsTimer(Handedness hand, float duration)
+        /// <summary>
+        /// Call if we are not using the value on start and want to update the timer value for the haptic duration
+        /// </summary>
+        /// <param name="newTimerValue"></param>
+        public virtual void UpdateTimer(float newTimerValue)
+        {
+            hapticTimerValue = new WaitForSecondsRealtime(newTimerValue);
+        }
+        
+        public virtual void StartHapticsTimer(Handedness hand)
         {
             StartHaptics(hand);
-            StartCoroutine(VibrateLength(duration, hand));
+            StartCoroutine(VibrateLength(hand));
         }
-        public virtual void StartHapticsRightHandTimer(float duration)
+        public virtual void StartHapticsRightHandTimer()
         {
             StartHaptics(Handedness.Right);
-            StartCoroutine(VibrateLength(duration, Handedness.Right));
+            StartCoroutine(VibrateLength(Handedness.Right));
 
         }
-        public virtual void StartHapticsLeftHandTimer(float duration)
+        public virtual void StartHapticsLeftHandTimer()
         {
             StartHaptics(Handedness.Left);
-            StartCoroutine(VibrateLength(duration, Handedness.Left));
+            StartCoroutine(VibrateLength(Handedness.Left));
         }
-        public virtual IEnumerator VibrateLength(float time, Handedness handedness)
+        public virtual IEnumerator VibrateLength(Handedness handedness)
         {
-            yield return new WaitForSecondsRealtime(time);
-            if(handedness == Handedness.Left && OVRInput.IsControllerConnected(leftController))
+            yield return hapticTimerValue;
+            if (handedness == Handedness.Left && OVRInput.IsControllerConnected(leftController))
             {
                 OVRInput.SetControllerVibration(0,0,leftController);
             }
