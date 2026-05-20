@@ -15,7 +15,7 @@ namespace FuzzPhyte.XR.OVR
         public float TimerDuration = 1f;
         private WaitForSecondsRealtime hapticTimerValue;
 
-        private void Start()
+        public virtual void Awake()
         {
             hapticTimerValue = new WaitForSecondsRealtime(TimerDuration);
         }
