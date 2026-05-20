@@ -3,6 +3,7 @@ namespace FuzzPhyte.XR.OVR
     using UnityEngine;
     using Oculus.Interaction;
     using Oculus.Interaction.Input;
+    using System.Collections;
     
     public class HapticReadData : MonoBehaviour
     {
@@ -71,6 +72,29 @@ namespace FuzzPhyte.XR.OVR
         public virtual void StartHapticsLeftHand()
         {
             StartHaptics(Handedness.Left);
+        }
+        public virtual void StartHapticsRightHandTimer(float duration)
+        {
+            StartHaptics(Handedness.Right);
+            VibrateLength(duration, Handedness.Right);
+
+        }
+        public virtual void StartHapticsLeftHandTimer(float duration)
+        {
+            StartHaptics(Handedness.Left);
+            VibrateLength(duration, Handedness.Left);
+        }
+        public virtual IEnumerator VibrateLength(float time, Handedness handedness)
+        {
+            yield return new WaitForSecondsRealtime(time);
+            if(handedness == Handedness.Left && OVRInput.IsControllerConnected(leftController))
+            {
+                OVRInput.SetControllerVibration(0,0,leftController);
+            }
+            if (handedness == Handedness.Right && OVRInput.IsControllerConnected(rightController))
+            {
+                OVRInput.SetControllerVibration(0, 0, rightController);
+            }
         }
         public virtual void ContinueHaptic()
         {
