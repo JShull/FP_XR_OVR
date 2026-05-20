@@ -73,16 +73,21 @@ namespace FuzzPhyte.XR.OVR
         {
             StartHaptics(Handedness.Left);
         }
+        public virtual void StartHapticsTimer(Handedness hand, float duration)
+        {
+            StartHaptics(hand);
+            StartCoroutine(VibrateLength(duration, hand));
+        }
         public virtual void StartHapticsRightHandTimer(float duration)
         {
             StartHaptics(Handedness.Right);
-            VibrateLength(duration, Handedness.Right);
+            StartCoroutine(VibrateLength(duration, Handedness.Right));
 
         }
         public virtual void StartHapticsLeftHandTimer(float duration)
         {
             StartHaptics(Handedness.Left);
-            VibrateLength(duration, Handedness.Left);
+            StartCoroutine(VibrateLength(duration, Handedness.Left));
         }
         public virtual IEnumerator VibrateLength(float time, Handedness handedness)
         {
