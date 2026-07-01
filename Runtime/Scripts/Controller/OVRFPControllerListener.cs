@@ -39,6 +39,16 @@ namespace FuzzPhyte.XR.OVR
         protected bool rightSecondaryTouched;
         [SerializeField]
         protected bool secondaryHoverForcedOff = false;
+        [SerializeField, Range(0f, 1f)]
+        protected float analogButtonPressThreshold = 0.01f;
+        [SerializeField]
+        protected bool leftTriggerDown;
+        [SerializeField]
+        protected bool rightTriggerDown;
+        [SerializeField]
+        protected bool leftGripDown;
+        [SerializeField]
+        protected bool rightGripDown;
 
         #endregion
 
@@ -197,14 +207,8 @@ namespace FuzzPhyte.XR.OVR
             float gripValue = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, GetOVRController(hand));
             // Trigger Button
             float triggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, GetOVRController(hand));
-            if (triggerValue > 0)
-            {
-                OnControllerTrigger(curController, hand, triggerValue);
-            }
-            if (gripValue > 0)
-            {
-                OnControllerGrip(curController, hand, gripValue);
-            }
+            CheckAnalogButtonState(curController, hand, XRButton.Trigger, triggerValue);
+            CheckAnalogButtonState(curController, hand, XRButton.Grip, gripValue);
         }
 
         protected virtual void CheckControllerJoystickState(Controller curController, XRHandedness hand)
@@ -286,10 +290,18 @@ namespace FuzzPhyte.XR.OVR
             //trigger logic
             FPControllerManager.UpdateButtonState(hand,XRButton.Trigger,XRInteractionStatus.Select,triggerValue);
         }
+        protected virtual void OnControllerTriggerReleased(Controller curController, XRHandedness hand)
+        {
+            FPControllerManager.UpdateButtonState(hand, XRButton.Trigger, XRInteractionStatus.Unselect, 0f);
+        }
         protected virtual void OnControllerGrip(Controller curController, XRHandedness hand,float gripValue)
         {
             //grip logic
             FPControllerManager.UpdateButtonState(hand,XRButton.Grip,XRInteractionStatus.Select,gripValue);
+        }
+        protected virtual void OnControllerGripReleased(Controller curController, XRHandedness hand)
+        {
+            FPControllerManager.UpdateButtonState(hand, XRButton.Grip, XRInteractionStatus.Unselect, 0f);
         }
         protected virtual void OnControllerJoystickMoved(Controller curController, XRHandedness hand, Vector2 axisValue)
         {
@@ -302,6 +314,78 @@ namespace FuzzPhyte.XR.OVR
         protected virtual void OnControllerJoystickClickState(Controller curController, XRHandedness hand, bool isClicked)
         {
             FPControllerManager.UpdateJoystickClickState(hand, isClicked);
+        }
+
+        protected virtual void CheckAnalogButtonState(Controller curController, XRHandedness hand, XRButton button, float value)
+        {
+            bool isDown = value > analogButtonPressThreshold;
+            bool wasDown = GetAnalogButtonDownState(hand, button);
+
+            if (isDown)
+            {
+                if (button == XRButton.Trigger)
+                {
+                    OnControllerTrigger(curController, hand, value);
+                }
+                else if (button == XRButton.Grip)
+                {
+                    OnControllerGrip(curController, hand, value);
+                }
+            }
+            else if (wasDown)
+            {
+                if (button == XRButton.Trigger)
+                {
+                    OnControllerTriggerReleased(curController, hand);
+                }
+                else if (button == XRButton.Grip)
+                {
+                    OnControllerGripReleased(curController, hand);
+                }
+            }
+
+            SetAnalogButtonDownState(hand, button, isDown);
+        }
+
+        protected virtual bool GetAnalogButtonDownState(XRHandedness hand, XRButton button)
+        {
+            if (button == XRButton.Trigger)
+            {
+                return hand == XRHandedness.Left ? leftTriggerDown : rightTriggerDown;
+            }
+
+            if (button == XRButton.Grip)
+            {
+                return hand == XRHandedness.Left ? leftGripDown : rightGripDown;
+            }
+
+            return false;
+        }
+
+        protected virtual void SetAnalogButtonDownState(XRHandedness hand, XRButton button, bool isDown)
+        {
+            if (button == XRButton.Trigger)
+            {
+                if (hand == XRHandedness.Left)
+                {
+                    leftTriggerDown = isDown;
+                }
+                else
+                {
+                    rightTriggerDown = isDown;
+                }
+            }
+            else if (button == XRButton.Grip)
+            {
+                if (hand == XRHandedness.Left)
+                {
+                    leftGripDown = isDown;
+                }
+                else
+                {
+                    rightGripDown = isDown;
+                }
+            }
         }
 
         #endregion
