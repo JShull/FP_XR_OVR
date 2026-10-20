@@ -20,6 +20,7 @@ namespace FuzzPhyte.XR.OVR
                 ControllerManager.ControllerLocked += HandleControllerLocked;
                 ControllerManager.ControllerUnlocked += HandleControllerUnlocked;
                 ControllerManager.ButtonLocked += HandleButtonLocked;
+                ControllerManager.ButtonUnlocked += HandleButtonUnlocked;
                 listenersSetup = true;
             }
         }
@@ -30,6 +31,7 @@ namespace FuzzPhyte.XR.OVR
                 ControllerManager.ControllerLocked += HandleControllerLocked;
                 ControllerManager.ControllerUnlocked += HandleControllerUnlocked;
                 ControllerManager.ButtonLocked += HandleButtonLocked;
+                ControllerManager.ButtonUnlocked += HandleButtonUnlocked;
                 listenersSetup = true;
             }
         }
@@ -41,6 +43,7 @@ namespace FuzzPhyte.XR.OVR
                 ControllerManager.ControllerLocked -= HandleControllerLocked;
                 ControllerManager.ControllerUnlocked -= HandleControllerUnlocked;
                 ControllerManager.ButtonLocked -= HandleButtonLocked;
+                ControllerManager.ButtonUnlocked -= HandleButtonUnlocked;
                 listenersSetup = false;
             }
         }
@@ -77,13 +80,24 @@ namespace FuzzPhyte.XR.OVR
                 MatchSelectorList(button, true, RightControllerSelectors);
             }
         }
+        protected virtual void HandleButtonUnlocked(XRHandedness hand, XRButton button)
+        {
+            if (hand == XRHandedness.Left)
+            {
+                MatchSelectorList(button, false, LeftControllerSelectors);
+            }
+            else if (hand == XRHandedness.Right)
+            {
+                MatchSelectorList(button, false, RightControllerSelectors);
+            }
+        }
         protected virtual void MatchSelectorList(XRButton button, bool lockState, List<OVRFPSelectorWrapper>wrapperList)
         {
             var usageReturn = OVRFPXRButtonMapper.MapToControllerButtonUsage(button);
             for (int i = 0; i < wrapperList.Count; i++)
             {
                 var aSelector = wrapperList[i];
-                if (aSelector.Selector.ControllerButtonUsage == usageReturn)
+                if (aSelector.OriginalUsage == usageReturn)
                 {
                     //match
                     if (lockState)
@@ -94,7 +108,6 @@ namespace FuzzPhyte.XR.OVR
                     {
                         aSelector.RestoreOriginalButtonUsage();
                     }
-                    return;
                 }
             }
         }

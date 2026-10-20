@@ -1,0 +1,6 @@
+{
+    "name": "com.fuzzphyte.xr.ovr.tests",
+    "references": ["com.fuzzphyte.xr.ovr", "com.fuzzphyte.xr", "Oculus.Interaction", "Oculus.VR"],
+    "includePlatforms": ["Editor"],
+    "optionalUnityReferences": ["TestAssemblies"]
+}

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Trigger/grip press and release events now publish only on threshold transitions; held analog values continue updating the assigned left/right controller feedback visuals.
+- Button unlock events restore every matching selector using its cached original button usage, including selectors whose current usage was cleared by locking.
+
 ## [0.2.0] - 2026-04-29
 
 ### 0.2.0 Added

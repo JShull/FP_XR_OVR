@@ -34,6 +34,7 @@ namespace FuzzPhyte.XR.OVR
         public ControllerSelector Selector { get { return selector; } }
         [SerializeField] private ControllerButtonUsage lockedUsage = ControllerButtonUsage.None;
         [SerializeField] protected ControllerButtonUsage originalUsage;
+        public ControllerButtonUsage OriginalUsage => originalUsage;
         private bool hasCached = false;
 
         protected void Awake()

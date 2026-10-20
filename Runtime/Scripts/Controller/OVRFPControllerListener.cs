@@ -287,8 +287,15 @@ namespace FuzzPhyte.XR.OVR
         }
         protected virtual void OnControllerTrigger(Controller curController, XRHandedness hand,float triggerValue)
         {
-            //trigger logic
-            FPControllerManager.UpdateButtonState(hand,XRButton.Trigger,XRInteractionStatus.Select,triggerValue);
+            if (!GetAnalogButtonDownState(hand, XRButton.Trigger))
+            {
+                FPControllerManager.UpdateButtonState(hand, XRButton.Trigger, XRInteractionStatus.Select, triggerValue);
+            }
+            else
+            {
+                var feedback = hand == XRHandedness.Left ? FPLeftController : FPRightController;
+                feedback?.SetButtonState(XRButton.Trigger, XRInteractionStatus.Select, triggerValue);
+            }
         }
         protected virtual void OnControllerTriggerReleased(Controller curController, XRHandedness hand)
         {
@@ -296,8 +303,15 @@ namespace FuzzPhyte.XR.OVR
         }
         protected virtual void OnControllerGrip(Controller curController, XRHandedness hand,float gripValue)
         {
-            //grip logic
-            FPControllerManager.UpdateButtonState(hand,XRButton.Grip,XRInteractionStatus.Select,gripValue);
+            if (!GetAnalogButtonDownState(hand, XRButton.Grip))
+            {
+                FPControllerManager.UpdateButtonState(hand, XRButton.Grip, XRInteractionStatus.Select, gripValue);
+            }
+            else
+            {
+                var feedback = hand == XRHandedness.Left ? FPLeftController : FPRightController;
+                feedback?.SetButtonState(XRButton.Grip, XRInteractionStatus.Select, gripValue);
+            }
         }
         protected virtual void OnControllerGripReleased(Controller curController, XRHandedness hand)
         {
